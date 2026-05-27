@@ -1,0 +1,97 @@
+/*=============== FOOTER (PERMANENT RICH DEEP DARK) ===============*/
+.footer {
+  background-color: #060913 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.03);
+  transition: background-color 0.4s;
+}
+
+.footer__container {
+  padding: 3.5rem 0 6rem;
+}
+
+.footer__title,
+.footer__link {
+  color: #f1f5f9 !important;
+  transition: 0.3s;
+}
+
+.footer__link:hover {
+  color: var(--first-color) !important;
+}
+
+.footer__title {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.footer__list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 1.5rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  row-gap: 0.5rem;
+}
+
+.footer__social {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  column-gap: 1.25rem;
+}
+
+.footer__social-link {
+  background-color: #0e1424 !important;
+  color: #f1f5f9 !important;
+  padding: 0.35rem;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  display: inline-flex;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: 0.3s;
+}
+
+.footer__social-link:hover {
+  background-color: var(--first-color) !important;
+  color: #ffffff !important;
+  transform: translateY(-3px);
+}
+
+.footer__copy {
+  display: block;
+  margin-top: 4.5rem;
+  color: #64748b !important;
+  text-align: center;
+  font-size: var(--smaller-font-size);
+  margin-bottom: 2rem;
+}
+
+/*========== LIGHT THEME OVERRIDES — Footer always stays dark ==========*/
+.light-theme .footer {
+  background-color: #060913 !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.light-theme .footer__title,
+.light-theme .footer__link {
+  color: #f1f5f9 !important;
+}
+
+.light-theme .footer__copy {
+  color: #64748b !important;
+}
+
+.light-theme .footer__social-link {
+  background-color: #0e1424 !important;
+  color: #f1f5f9 !important;
+}
+
+/*=============== FOOTER BREAKPOINTS ===============*/
+@media screen and (min-width: 992px) {
+  .footer__social-link {
+    font-size: 1.25rem;
+    padding: 0.4rem;
+    border-radius: 0.5rem;
+  }
+}
