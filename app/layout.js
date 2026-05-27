@@ -1,14 +1,14 @@
 import "../styles/globals.css";
 import "../styles/Header.css";
-import "../styles/home.css";
-import "../styles/about.css";
-import "../styles/skills.css";
-import "../styles/services.css";
-import "../styles/work.css";
-import "../styles/experience.css";
-import "../styles/testimonials.css";
-import "../styles/contact.css";
-import "../styles/footer.css";
+import "../styles/Home.css";
+import "../styles/About.css";
+import "../styles/Skills.css";
+import "../styles/Services.css";
+import "../styles/Work.css";
+import "../styles/Experience.css";
+import "../styles/Testimonials.css";
+import "../styles/Contact.css";
+import "../styles/Footer.css";
 
 export const metadata = {
   title: "Ambar's Portfolio",
