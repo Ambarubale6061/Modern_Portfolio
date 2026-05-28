@@ -7,6 +7,10 @@
 
 .footer__container {
   padding: 3.5rem 0 6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .footer__title,
@@ -15,13 +19,25 @@
   transition: 0.3s;
 }
 
-.footer__link:hover {
-  color: var(--first-color) !important;
+/* थोडं लहान आणि सुटसुटीत केलेलं नाव */
+.footer__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
 }
 
-.footer__title {
-  text-align: center;
+/* Subtitle Styling */
+.footer__subtitle {
+  color: #94a3b8 !important;
+  font-size: var(--small-font-size);
+  max-width: 450px;
+  line-height: 1.6;
   margin-bottom: 2rem;
+  font-weight: 400;
+}
+
+.footer__link:hover {
+  color: #3b82f6 !important;
 }
 
 .footer__list {
@@ -29,7 +45,7 @@
   justify-content: center;
   align-items: center;
   column-gap: 1.5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
   flex-wrap: wrap;
   row-gap: 0.5rem;
 }
@@ -41,21 +57,60 @@
   column-gap: 1.25rem;
 }
 
+/* Circle Icon Design */
 .footer__social-link {
   background-color: #0e1424 !important;
-  color: #f1f5f9 !important;
-  padding: 0.35rem;
-  border-radius: 0.25rem;
-  font-size: 1rem;
+  color: #94a3b8 !important;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50% !important;
+  font-size: 1.25rem;
   display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border: 1px solid rgba(255, 255, 255, 0.05);
-  transition: 0.3s;
+  transition: all 0.3s ease;
 }
 
-.footer__social-link:hover {
-  background-color: var(--first-color) !important;
+/* Individual Brand Colors on Hover */
+.footer__social-github:hover {
+  background-color: #000000 !important;
   color: #ffffff !important;
-  transform: translateY(-3px);
+  border-color: #000000;
+  transform: translateY(-4px) scale(1.1);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+}
+
+.footer__social-linkedin:hover {
+  background-color: #002ca5 !important;
+  color: #ffffff !important;
+  border-color: #002ca5;
+  transform: translateY(-4px) scale(1.1);
+  box-shadow: 0 10px 15px -3px rgba(2, 132, 199, 0.3);
+}
+
+.footer__social-twitter:hover {
+  background-color: #0ea5e9 !important; /* Sky Blue for X/Twitter */
+  color: #ffffff !important;
+  border-color: #0ea5e9;
+  transform: translateY(-4px) scale(1.1);
+  box-shadow: 0 10px 15px -3px rgba(14, 165, 233, 0.3);
+}
+
+.footer__social-instagram:hover {
+  background-color: #db2777 !important;
+  color: #ffffff !important;
+  border-color: #db2777;
+  transform: translateY(-4px) scale(1.1);
+  box-shadow: 0 10px 15px -3px rgba(219, 39, 119, 0.3);
+}
+
+.footer__social-whatsapp:hover {
+  background-color: #059669 !important;
+  color: #ffffff !important;
+  border-color: #059669;
+  transform: translateY(-4px) scale(1.1);
+  box-shadow: 0 10px 15px -3px rgba(5, 150, 105, 0.3);
 }
 
 .footer__copy {
@@ -65,9 +120,10 @@
   text-align: center;
   font-size: var(--smaller-font-size);
   margin-bottom: 2rem;
+  letter-spacing: 1px;
 }
 
-/*========== LIGHT THEME OVERRIDES — Footer always stays dark ==========*/
+/*========== LIGHT THEME OVERRIDES ==========*/
 .light-theme .footer {
   background-color: #060913 !important;
   border-top: 1px solid rgba(255, 255, 255, 0.03);
@@ -78,20 +134,28 @@
   color: #f1f5f9 !important;
 }
 
+.light-theme .footer__subtitle {
+  color: #94a3b8 !important;
+}
+
 .light-theme .footer__copy {
   color: #64748b !important;
 }
 
 .light-theme .footer__social-link {
   background-color: #0e1424 !important;
-  color: #f1f5f9 !important;
+  color: #94a3b8 !important;
 }
 
 /*=============== FOOTER BREAKPOINTS ===============*/
 @media screen and (min-width: 992px) {
+  .footer__title {
+    font-size: 1.75rem; /* डेस्कटॉपवरही योग्य प्रमाणात लहान आकार */
+  }
+
   .footer__social-link {
-    font-size: 1.25rem;
-    padding: 0.4rem;
-    border-radius: 0.5rem;
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.5rem;
   }
 }

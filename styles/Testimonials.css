@@ -1,43 +1,178 @@
 /*=============== TESTIMONIAL ===============*/
+.testimonial__container {
+  /* डॉट्सला खाली पुरेशी जागा देण्यासाठी पॅडिंग वाढवले आहे */
+  padding-bottom: 4.5rem !important;
+  position: relative;
+}
+
+/* Swiper Wrapper ला stretch अलॉयमेंट देणे जेणेकरून स्लाईड लहान-मोठी होणार नाही */
+.testimonial__container .swiper-wrapper {
+  display: flex !important;
+  align-items: stretch !important;
+}
+
+/* प्रत्येक स्लाईडला Flex देऊन पूर्ण उंची देणे */
+.testimonial__slide {
+  height: auto !important;
+  display: flex !important;
+}
+
+/* मुख्य कार्ड डिझाईन - मॅचिंग विथ Screenshot 2026-05-28 154033.jpg */
 .testimonial__card {
   background-color: var(--container-color);
-  padding: 1.25rem 1.5rem;
-  border-radius: 1.5rem;
-  margin-bottom: 3rem;
-}
+  padding: 2rem;
+  border-radius: 1.25rem;
 
-.testimonial__img {
-  width: 60px;
-  border-radius: 3rem;
+  /* डॉट्स खाली ढकलण्यासाठी बॉटम मार्जिन फिक्स केले */
   margin-bottom: 1rem;
+
+  /* Strict Equal Sizing Logic */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+
+  border: 1px solid hsla(var(--first-hue), var(--sat), var(--lig), 0.05);
+  transition: transform 0.3s ease;
+  box-sizing: border-box;
 }
 
-.testimonial__name {
-  font-size: var(--normal-font-size);
-  font-weight: var(--font-medium);
-  margin-bottom: 0.25rem;
+/* Hover वर ग्लो न होता फक्त हलकेच वर सरकणार */
+.testimonial__card:hover {
+  transform: translateY(-4px);
+}
+
+.testimonial__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.testimonial__quote {
+  font-family: serif;
+  font-size: 3.5rem;
+  line-height: 1;
+  color: var(--first-color);
+  user-select: none;
+}
+
+.testimonial__company-badge {
+  font-size: 0.65rem;
+  font-weight: var(--font-bold);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--first-color);
+  background-color: hsla(var(--first-hue), var(--sat), var(--lig), 0.1);
+  padding: 0.3rem 0.75rem;
+  border-radius: 5rem;
+  border: 1px solid hsla(var(--first-hue), var(--sat), var(--lig), 0.15);
 }
 
 .testimonial__description {
   font-size: var(--small-font-size);
+  color: var(--text-color);
+  line-height: 1.6;
+  font-style: italic;
+  margin-bottom: 2rem;
+  flex-grow: 1; /* मजकूर लहान असला तरी ही स्पेस वाढवून खालची प्रोफाईल एका लाईनमध्ये लॉक करेल */
+}
+
+.testimonial__profile {
+  display: flex;
+  align-items: center;
+  column-gap: 0.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid hsla(var(--first-hue), var(--sat), var(--lig), 0.08);
+}
+
+.testimonial__avatar-box {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  background-color: var(--body-color);
+  border: 2px solid hsla(var(--first-hue), var(--sat), var(--lig), 0.15);
+}
+
+.testimonial__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.testimonial__avatar-fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: hsla(var(--first-hue), var(--sat), var(--lig), 0.2);
+  color: var(--first-color);
+  font-size: var(--smaller-font-size);
+  font-weight: var(--font-bold);
+}
+
+.testimonial__meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.testimonial__name {
+  font-size: var(--normal-font-size);
+  font-weight: var(--font-semibold);
+  color: var(--title-color);
   margin-bottom: 0.15rem;
+}
+
+.testimonial__role {
+  font-size: var(--smaller-font-size);
+  color: var(--text-color-light);
+  font-weight: var(--font-medium);
+}
+
+/* Swiper pagination dots position absolute bottom वरून आणखी खाली ढकलली आहे */
+.testimonial__container .swiper-pagination {
+  bottom: 1rem !important;
 }
 
 /* Swiper pagination bullets */
 .swiper-pagination-bullet {
   background-color: var(--text-color-light);
+  opacity: 0.3;
+  transition:
+    background-color 0.3s,
+    opacity 0.3s;
 }
 
 .swiper-pagination-bullet-active {
   background-color: var(--first-color);
+  opacity: 1;
 }
 
-/*========== Light theme overrides: Testimonial ==========*/
+/*========== Light theme overrides ==========*/
 .light-theme .testimonial__card {
-  box-shadow: 0 2px 16px hsla(var(--second-hue), 48%, 8%, 0.1);
+  box-shadow: 0 4px 20px hsla(var(--second-hue), 48%, 8%, 0.04);
 }
 
-/*=============== TESTIMONIAL BREAKPOINTS ===============*/
+/*=============== BREAKPOINTS (Isolated Mobile Changes) ===============*/
+@media screen and (max-width: 576px) {
+  .testimonial__container {
+    padding-bottom: 5rem !important; /* मोबाईलवर डॉट्ससाठी जास्त स्पेस */
+  }
+
+  .testimonial__card {
+    padding: 1.5rem; /* मोबाईल स्क्रीनवर फिट बसण्यासाठी थोडे कमी पॅडिंग */
+    margin-bottom: 1.5rem;
+  }
+
+  .testimonial__container .swiper-pagination {
+    bottom: 0.5rem !important; /* मोबाईलवर डॉट्स कार्डपासून लांब आणि प्रॉपर राहतील */
+  }
+}
+
 @media screen and (min-width: 630px) {
   .testimonial__container {
     width: 600px;
@@ -45,12 +180,14 @@
   }
 }
 
+@media screen and (min-width: 768px) {
+  .testimonial__container {
+    width: 720px;
+  }
+}
+
 @media screen and (min-width: 992px) {
   .testimonial__container {
-    width: 970px;
-  }
-
-  .testimonial__card {
-    padding: 1.5rem 2rem;
+    width: 950px;
   }
 }

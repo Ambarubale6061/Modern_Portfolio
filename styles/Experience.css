@@ -12,36 +12,40 @@
   border-radius: 1.25rem;
   padding: 1.5rem;
   border-left: 3px solid var(--first-color);
-  transition:
-    transform 0.3s,
-    box-shadow 0.3s;
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
   position: relative;
 }
 
+/* Glow इफेक्ट काढून टाकला आहे, कार्ड आता फक्त सरळ वर (`translateY`) सरकेल */
 .experience__card:hover {
-  transform: translateX(6px);
-  box-shadow: -6px 0 24px hsla(var(--first-hue), var(--sat), var(--lig), 0.15);
+  transform: translateY(-6px);
 }
 
 .experience__header {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   column-gap: 1rem;
   margin-bottom: 0.75rem;
+  position: relative;
 }
 
-.experience__icon-box {
-  background: linear-gradient(
-    135deg,
-    hsla(var(--first-hue), var(--sat), var(--lig), 0.25),
-    hsla(var(--first-hue), var(--sat), var(--lig), 0.05)
-  );
-  border-radius: 0.75rem;
-  padding: 0.65rem;
+.experience__img-box {
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 50%;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  border: 1px solid hsla(var(--first-hue), var(--sat), var(--lig), 0.2);
+  background-color: var(--body-color);
+}
+
+.experience__thumb-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .experience__icon {
@@ -66,7 +70,15 @@
   font-weight: var(--font-medium);
 }
 
-.experience__period {
+.experience__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.experience__period,
+.experience__location {
   display: inline-flex;
   align-items: center;
   column-gap: 0.3rem;
@@ -75,25 +87,125 @@
   background-color: hsla(var(--first-hue), var(--sat), var(--lig), 0.1);
   padding: 0.2rem 0.65rem;
   border-radius: 5rem;
-  margin-bottom: 0.75rem;
 }
 
 .experience__period-icon {
   font-size: 0.85rem;
 }
 
+.experience__bullets {
+  display: grid;
+  row-gap: 0.65rem;
+  margin-bottom: 1.25rem;
+  list-style: none;
+  padding: 0;
+}
+
+.experience__bullet-item {
+  display: flex;
+  align-items: flex-start;
+  column-gap: 0.5rem;
+}
+
+.experience__bullet-marker {
+  color: var(--first-color);
+  font-size: 0.8rem;
+  margin-top: 0.15rem;
+}
+
 .experience__description {
   font-size: var(--small-font-size);
   color: var(--text-color);
-  line-height: 1.7;
+  line-height: 1.6;
+  margin: 0;
 }
 
-/*========== Light theme overrides: Experience ==========*/
-.light-theme .experience__card {
-  box-shadow: 0 2px 16px hsla(var(--second-hue), 48%, 8%, 0.1);
+/* Verify Button Base Layout */
+.experience__verify-btn {
+  display: inline-flex;
+  align-items: center;
+  column-gap: 0.25rem;
+  font-size: var(--smaller-font-size);
+  font-weight: var(--font-bold);
+  padding: 0.4rem 0.75rem;
+  border-radius: 5rem;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+.experience__verify-link-icon {
+  font-size: 0.7rem;
+}
+
+/* Tech Stack layout */
+.experience__tech-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  padding-top: 1rem;
+  border-top: 1px solid hsla(var(--first-hue), var(--sat), var(--lig), 0.1);
+}
+
+.experience__tech-badge {
+  position: relative;
+  width: 2.3rem;
+  height: 2.3rem;
+  background-color: var(--body-color);
+  border: 1px solid hsla(var(--first-hue), var(--sat), var(--lig), 0.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s;
+}
+
+.experience__tech-badge:hover {
+  transform: scale(1.15);
+}
+
+/* आयकॉन हॉव्हर केल्यावर आता तिरपे (rotate) होणार नाहीत, पूर्णपणे सरळ राहतील */
+.experience__tech-icon {
+  font-size: 1.35rem;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
+}
+
+/* Tech Tooltips */
+.experience__tech-tooltip {
+  position: absolute;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--title-color);
+  color: var(--body-color);
+  font-size: 0.65rem;
+  font-weight: var(--font-medium);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
+  z-index: 10;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.experience__tech-badge:hover .experience__tech-tooltip {
+  opacity: 1;
 }
 
 /*=============== EXPERIENCE BREAKPOINTS ===============*/
+@media screen and (max-width: 520px) {
+  .experience__header {
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 0.75rem;
+  }
+
+  .experience__verify-btn {
+    align-self: flex-start;
+  }
+}
+
 @media screen and (min-width: 630px) {
   .experience__container {
     max-width: 600px;
