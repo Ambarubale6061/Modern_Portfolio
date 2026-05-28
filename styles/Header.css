@@ -6,7 +6,9 @@
   width: 100%;
   background-color: var(--body-color);
   z-index: var(--z-fixed);
-  transition: 0.4s;
+  transition:
+    background-color 0.4s ease,
+    box-shadow 0.4s ease;
 }
 
 .nav {
@@ -19,7 +21,7 @@
 .nav__logo {
   color: var(--first-color);
   font-weight: var(--font-medium);
-  transition: 0.4s;
+  transition: color 0.4s ease;
 }
 
 .nav__logo:hover {
@@ -29,12 +31,16 @@
 .nav__menu {
   position: fixed;
   bottom: 1rem;
+  /* Dark default */
   background-color: hsla(var(--second-hue), 32%, 16%, 0.8);
   width: 90%;
   border-radius: 4rem;
   padding: 1rem 2.25rem;
   backdrop-filter: blur(10px);
-  transition: 0.4s;
+  -webkit-backdrop-filter: blur(10px);
+  transition:
+    background-color 0.4s ease,
+    box-shadow 0.4s ease;
 }
 
 .nav__list {
@@ -49,7 +55,9 @@
   padding: 0.4rem;
   font-weight: var(--font-medium);
   text-decoration: none;
-  transition: 0.4s;
+  transition:
+    color 0.4s ease,
+    background 0.4s ease;
   display: flex;
   border-radius: 5rem;
 }
@@ -70,12 +78,18 @@
 }
 
 /*========== Light theme overrides: Header ==========*/
+.light-theme .header {
+  background-color: var(--body-color);
+}
+
 .light-theme .scroll-header {
   box-shadow: 0 2px 4px hsla(0, 0%, 1%, 0.1);
 }
 
 .light-theme .nav__menu {
-  background-color: hsla(var(--second-hue), 32%, 90%, 0.8);
+  /* A soft blurred white pill — matches the pale body colour */
+  background-color: hsla(var(--second-hue), 30%, 96%, 0.85);
+  box-shadow: 0 4px 24px hsla(var(--second-hue), 48%, 8%, 0.1);
 }
 
 /*=============== HEADER BREAKPOINTS ===============*/

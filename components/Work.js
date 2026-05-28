@@ -86,13 +86,6 @@ const projects = [
   },
 ];
 
-const filters = [
-  { label: "All", value: "all" },
-  { label: "Web", value: "web" },
-  { label: "Movil", value: "movil" },
-  { label: "Design", value: "design" },
-];
-
 /* ─── Github icon (inline SVG, no external dependency) ───────────── */
 function GithubIcon({ className }) {
   return (
@@ -201,33 +194,14 @@ function ProjectCard({ project }) {
 
 /* ─── Section ─────────────────────────────────────────────────────── */
 export default function Work() {
-  const [activeFilter, setActiveFilter] = useState("all");
-
-  const visible = projects.filter(
-    (p) => activeFilter === "all" || p.category === activeFilter,
-  );
-
   return (
     <section className="work section" id="work">
       <span className="section__subtitle">My Portfolio</span>
       <h2 className="section__title">Recent Works</h2>
 
-      {/* Filter buttons */}
-      <div className="work__filters">
-        {filters.map((f) => (
-          <span
-            key={f.value}
-            className={`work__item${activeFilter === f.value ? " active-work" : ""}`}
-            onClick={() => setActiveFilter(f.value)}
-          >
-            {f.label}
-          </span>
-        ))}
-      </div>
-
       {/* Project cards grid */}
       <div className="work__container container grid">
-        {visible.map((project, i) => (
+        {projects.map((project, i) => (
           <ProjectCard key={i} project={project} />
         ))}
       </div>

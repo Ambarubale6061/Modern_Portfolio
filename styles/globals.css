@@ -74,7 +74,10 @@ textarea {
 body {
   background-color: var(--body-color);
   color: var(--text-color);
-  transition: 0.4s;
+  /* Smooth transition covers bg, text, and all inherited colours */
+  transition:
+    background-color 0.4s ease,
+    color 0.4s ease;
 }
 
 h1,
@@ -107,31 +110,53 @@ img {
 .change-theme {
   font-size: 1.25rem;
   cursor: pointer;
-  transition: 0.3s;
+  transition: color 0.3s;
 }
 
 .change-theme:hover {
   color: var(--first-color);
 }
 
-/*========== Light theme variables ==========*/
+/*========================================
+  LIGHT THEME — variable overrides
+  Everything that uses a CSS var picks up
+  the new value automatically; only things
+  that need an explicit colour are listed.
+==========================================*/
 body.light-theme {
   --title-color: hsl(var(--second-hue), 15%, 15%);
   --text-color: hsl(var(--second-hue), 8%, 35%);
-  --body-color: hsl(var(--second-hue), 100%, 99%);
-  --container-color: #e9e9e9;
+  --text-color-light: hsl(var(--second-hue), 4%, 50%);
+  --body-color: hsl(var(--second-hue), 100%, 98%);
+  --container-color: hsl(var(--second-hue), 20%, 92%);
 }
 
-/*========== Shared light theme overrides ==========*/
+/*-- Subtitle & misc shared overrides --*/
 .light-theme .section__subtitle {
   color: var(--text-color);
 }
 
-.light-theme .button,
-.light-theme .button:hover {
-  color: var(--title-color);
+/* Buttons — keep text readable on light bg */
+.light-theme .button {
+  color: #fff;
 }
 
+.light-theme .button:hover {
+  color: #fff;
+}
+
+.light-theme .button--ghost {
+  color: var(--first-color);
+  border-color: var(--first-color);
+  background-color: transparent;
+}
+
+.light-theme .button--ghost:hover {
+  background-color: var(--first-color);
+  color: #fff;
+}
+
+/* Scrollbar */
 .light-theme::-webkit-scrollbar {
   background-color: hsl(var(--second-hue), 8%, 80%);
 }
@@ -181,7 +206,10 @@ body.light-theme {
   padding: 0.75rem 1rem;
   border-radius: 0.8rem;
   font-weight: var(--font-medium);
-  transition: 0.4s;
+  transition:
+    background-color 0.4s ease,
+    color 0.4s ease,
+    border-color 0.4s ease;
 }
 
 .button:hover {

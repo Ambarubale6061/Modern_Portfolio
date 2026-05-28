@@ -1,146 +1,306 @@
 /*=============== SERVICES ===============*/
+
+/* ─── Grid ───────────────────────────────────────────────────────── */
 .services__container {
-  grid-template-columns: repeat(2, 1fr);
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 1.5rem;
   padding-top: 1rem;
 }
 
+/* ─── Card (Enhanced Fixed Height Framework) ─────────────────────── */
 .services__card {
   background-color: var(--container-color);
-  padding: 3rem 1.5rem 1.5rem;
   border-radius: 1.25rem;
+  border: 1px solid transparent;
+  padding: 2.5rem 1.75rem;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+
+  /* वाढवलेली सुरक्षित उंची जेणेकरून टायटल आणि डिस्क्रिप्शन मिक्स होणार नाही */
+  height: 400px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  /* Premium transitions */
+  transition:
+    border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.4s ease,
+    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.4s ease;
 }
 
-.services__title {
+/* ─── Premium Subtle Shrink Effect ───────────────────────────────── */
+.services__container--has-active .services__card {
+  transform: scale(0.96);
+  opacity: 0.6;
+}
+
+.services__container--has-active .services__card--active {
+  transform: scale(1);
+  opacity: 1;
+  border-color: hsla(var(--first-hue), var(--sat), var(--lig), 0.38);
+  box-shadow:
+    0 12px 32px hsla(var(--first-hue), var(--sat), var(--lig), 0.12),
+    0 2px 8px hsla(var(--second-hue), 48%, 8%, 0.06);
+}
+
+/* ─── Accent line ────────────────────────────────────────────────── */
+.services__card-accent {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 1.5rem;
+  right: 1.5rem;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(
+    90deg,
+    hsla(var(--first-hue), var(--sat), var(--lig), 0),
+    hsla(var(--first-hue), var(--sat), var(--lig), 0.6),
+    hsla(var(--first-hue), var(--sat), var(--lig), 0)
+  );
+  opacity: 0;
+  transition: opacity 0.38s ease;
+  z-index: 3;
+}
+
+.services__card--active .services__card-accent {
+  opacity: 1;
+}
+
+/* ─── Card top ───────────────────────────────────────────────────── */
+.services__card-top {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  width: 100%;
+
+  /* परफेक्ट मध्यभागी जागेची मांडणी */
+  transform: translateY(90px);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 2;
+}
+
+.services__card--active .services__card-top {
+  transform: translateY(0);
+}
+
+/* Icon pill */
+.services__card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 0.85rem;
+  background: hsla(var(--first-hue), var(--sat), var(--lig), 0.12);
+  color: var(--first-color);
+  font-size: 1.7rem;
+  flex-shrink: 0;
+  transition:
+    background 0.38s ease,
+    transform 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* FIX: इथून rotate काढून टाकले आहे, आता आयकॉन सरळ राहील */
+.services__card--active .services__card-icon {
+  background: hsla(var(--first-hue), var(--sat), var(--lig), 0.22);
+  transform: scale(1.05);
+}
+
+/* Title */
+.services__card-title {
   font-size: var(--h3-font-size);
-  margin-bottom: 2.5rem;
+  font-weight: var(--font-semibold);
+  color: var(--title-color);
+  line-height: 1.4;
+  transition: color 0.32s ease;
 }
 
+.services__card--active .services__card-title {
+  color: var(--first-color);
+}
+
+/* ─── See More Option (Premium Classic Button Style) ──────────────────────── */
+.services__card-more {
+  position: absolute;
+  bottom: 2.5rem;
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 2;
+}
+
+/* नवीन क्लासिक बटन डिझाइन */
 .services__button {
   color: var(--first-color);
   font-size: var(--small-font-size);
+  font-weight: var(--font-medium);
   display: flex;
   align-items: center;
   column-gap: 0.25rem;
   cursor: pointer;
 }
 
+/* आयकॉन स्टाईल आणि अ‍ॅनिमेशन */
+.services__icon {
+  font-size: 1rem;
+  transition: transform 0.4s ease;
+}
+
+/* स्वतंत्र बटणावर माऊस नेल्यावर बाण पुढे सरकेल */
 .services__button:hover .services__icon {
   transform: translateX(0.25rem);
 }
 
-.services__icon {
-  font-size: 1rem;
-  transition: 0.4s;
-}
-
-/*=============== SERVICES MODAL ===============*/
-.services__modal {
-  position: fixed;
-  inset: 0;
-  background-color: hsla(var(--second-hue), 28%, 16%, 0.7);
-  padding: 2rem 1rem;
-  display: grid;
-  place-items: center;
-  transition: 0.4s;
-  z-index: var(--z-modal);
-  visibility: hidden;
+/* जेव्हा पूर्ण कार्ड अ‍ॅक्टिव्ह होईल, तेव्हा 'See More' एकदम स्मूथली गायब होईल */
+.services__card--active .services__card-more {
   opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
 }
 
-.services__modal-content {
-  background-color: var(--body-color);
-  padding: 4.5rem 1.5rem 2.5rem;
-  border-radius: 1.5rem;
-  position: relative;
+/* ─── Card bottom (Description & List) ───────────────────────────── */
+.services__card-bottom {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 1.75rem;
+  right: 1.75rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.35s ease 0.08s,
+    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.08s;
+  pointer-events: none;
+  z-index: 1;
 }
 
-.services__modal-title,
-.services__modal-description {
-  text-align: center;
+.services__card--active .services__card-bottom {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
-.services__modal-title {
-  font-size: var(--h3-font-size);
-  color: var(--first-color);
-  margin-bottom: 1rem;
-}
-
-.services__modal-description {
+/* Description */
+.services__card-desc {
   font-size: var(--small-font-size);
-  margin-bottom: 2rem;
+  color: var(--text-color);
+  line-height: 1.5;
+  text-align: left;
 }
 
-.services__modal-list {
-  display: grid;
-  row-gap: 0.75rem;
+/* Feature list */
+.services__card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-.services__modal-item {
+.services__card-item {
   display: flex;
   align-items: flex-start;
-  column-gap: 0.5rem;
+  gap: 0.5rem;
+  font-size: var(--smaller-font-size);
+  color: var(--text-color);
+  line-height: 1.4;
 }
 
-.services__modal-icon {
-  font-size: 1.5rem;
+.services__card-check {
   color: var(--first-color);
+  font-size: 0.95rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+  opacity: 0;
+  transition: opacity 0.18s ease;
 }
 
-.services__modal-info {
-  font-size: var(--small-font-size);
-}
-
-.services__modal-close {
-  position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
-  font-size: 1.5rem;
-  color: var(--first-color);
-  cursor: pointer;
-}
-
-.active-modal {
-  visibility: visible;
+.services__card--active .services__card-check {
   opacity: 1;
 }
 
-/*========== Light theme overrides: Services ==========*/
+/* ─── Light theme ────────────────────────────────────────────────── */
 .light-theme .services__card {
-  box-shadow: 0 2px 16px hsla(var(--second-hue), 48%, 8%, 0.1);
+  box-shadow: 0 2px 12px hsla(var(--second-hue), 48%, 8%, 0.04);
 }
 
-/*=============== SERVICES BREAKPOINTS ===============*/
-@media screen and (max-width: 320px) {
-  .services__container {
-    grid-template-columns: 145px;
-    justify-content: center;
+.light-theme .services__container--has-active .services__card--active {
+  box-shadow:
+    0 12px 32px hsla(var(--first-hue), var(--sat), 50%, 0.12),
+    0 2px 8px hsla(var(--second-hue), 48%, 8%, 0.05);
+}
+
+/* ─── Responsive Breakpoints ────────────────────────────────────── */
+@media screen and (max-width: 350px) {
+  .services__card {
+    height: 450px;
+    padding: 2rem 1.25rem;
+  }
+  .services__card-top {
+    transform: translateY(110px);
+  }
+  .services__card-bottom {
+    left: 1.25rem;
+    right: 1.25rem;
+    bottom: 2rem;
+  }
+  .services__card-more {
+    bottom: 2rem;
   }
 }
 
-@media screen and (min-width: 630px) {
+@media screen and (min-width: 480px) {
   .services__container {
-    grid-template-columns: repeat(3, 177px);
-    justify-content: center;
+    grid-template-columns: repeat(2, 1fr);
   }
-
-  .services__modal-content {
-    width: 500px;
-    padding: 4.5rem 2.5rem 2.5rem;
+  .services__card {
+    height: 420px;
   }
+  .services__card-top {
+    transform: translateY(100px);
+  }
+}
 
-  .services__modal-description {
-    padding: 0 3.5rem;
+@media screen and (min-width: 768px) {
+  .services__container {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .services__card {
+    height: 400px;
+  }
+  .services__card-top {
+    transform: translateY(90px);
   }
 }
 
 @media screen and (min-width: 992px) {
-  .services__container {
-    grid-template-columns: repeat(3, 300px);
-    column-gap: 2rem;
-  }
-
   .services__card {
-    padding: 5rem 2rem 1.5rem;
+    height: 380px;
+    padding: 2.5rem 2rem;
+  }
+  .services__card-top {
+    transform: translateY(80px);
+  }
+  .services__card-bottom {
+    left: 2rem;
+    right: 2rem;
   }
 }
