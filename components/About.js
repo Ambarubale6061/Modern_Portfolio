@@ -23,7 +23,7 @@ export default function About() {
 
       <div className="about__container container grid">
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src="/assets/img/about.jpg" alt="About" className="about__img" />
+        <img src="/am1.png" alt="About" className="about__img" />
 
         <div className="about__data">
           <div className="about__info">

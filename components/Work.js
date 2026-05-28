@@ -11,7 +11,7 @@ const projects = [
     description:
       "Architected a multi-agent AI coding platform (Planner, Coder, Debugger) that automates end-to-end code generation, execution, and debugging. Features real-time streaming (SSE) with <2s latency, agent memory, version control, and a hybrid execution engine within a browser-based IDE.",
     tech: ["React", "TypeScript", "Node.js", "Express", "MongoDB"],
-    image: "/assets/img/work1.jpg",
+    image: "/IDE.png",
     link: "https://agentic-ai-studio-chi.vercel.app/",
     github: "https://github.com/Ambarubale6061/AgenticAI-Studio",
     accentFrom: "#7c3aed",
@@ -24,7 +24,7 @@ const projects = [
     description:
       "Built a scalable full-stack eCommerce platform supporting 50+ products with filtering, cart, wishlist, and secure checkout. Features a real-time product management system via Supabase Realtime, reducing admin update delays by 60%, with role-based architecture and chatbot integration.",
     tech: ["React", "Tailwind CSS", "TypeScript", "Supabase"],
-    image: "/assets/img/work2.jpg",
+    image: "/home.png",
     link: "https://futurecart-e-commerce.vercel.app/",
     github:
       "https://github.com/Ambarubale6061/FutureCart-Modern-eCommerce-Platform",
@@ -38,7 +38,7 @@ const projects = [
     description:
       "Developed a scalable social media platform supporting posts, reels, stories, and real-time interactions. Delivers low-latency (<1s) messaging, notifications, and presence via Supabase Realtime, with peer-to-peer voice and video calling via WebRTC and secure Postgres/RLS backend.",
     tech: ["React", "TypeScript", "Supabase", "WebRTC"],
-    image: "/assets/img/work3.jpg",
+    image: "/hom.png",
     link: "https://connectly-tau.vercel.app/",
     github: "https://github.com/Ambarubale6061/Connectly",
     accentFrom: "#0891b2",
@@ -51,7 +51,7 @@ const projects = [
     description:
       "Built an efficient task management application to organize, track, and manage daily activities with a clean and responsive user interface for improved productivity.",
     tech: ["Next.js", "React", "Tailwind CSS", "Node.js"],
-    image: "/assets/img/work4.jpg",
+    image: "/taskapp.png",
     link: "https://task-app-nine-lovat.vercel.app/",
     github: "https://github.com/yourusername/task-manager-app",
     accentFrom: "#2563eb",
@@ -64,7 +64,7 @@ const projects = [
     description:
       "Developed a modern e-commerce web application with responsive UI, product listings, cart functionality, and secure backend integration using MongoDB and Next.js.",
     tech: ["Next.js", "Node.js", "Tailwind CSS", "MongoDB"],
-    image: "/assets/img/work5.jpg",
+    image: "/quick.png",
     link: "https://quickcart-ten-opal.vercel.app/",
     github: "https://github.com/yourusername/quickcart",
     accentFrom: "#059669",
@@ -77,7 +77,7 @@ const projects = [
     description:
       "Designed a real-time weather dashboard that displays temperature, humidity, and weather forecasts for different cities with a modern and responsive UI.",
     tech: ["Next.js", "Tailwind CSS", "TypeScript", "Vite"],
-    image: "/assets/img/work6.jpg",
+    image: "/weather.png",
     link: "https://weather-dashboard-six-steel.vercel.app/",
     github: "https://github.com/yourusername/weather-app",
     accentFrom: "#d97706",
