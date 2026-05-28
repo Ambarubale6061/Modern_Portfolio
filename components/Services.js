@@ -1,88 +1,85 @@
 "use client";
 
 import { useState } from "react";
+import { TypeAnimation } from "react-type-animation";
 
 const servicesData = [
   {
     title: "Full Stack\nDevelopment",
-    modalTitle: "Full Stack Development",
     description:
-      "Building scalable web applications from frontend to backend with performance, scalability, and real-world impact in mind.",
+      "Building scalable web applications from frontend to backend with performance, scalability, and real-world impact.",
+    iconClass: "bx bx-code-block",
     items: [
       "MERN Stack Apps development.",
       "Designing and implementing REST APIs.",
-      "Seamless application deployment and cloud integration.",
+      "Seamless cloud integration.",
     ],
   },
   {
     title: "AI\nIntegration",
-    modalTitle: "AI Integration",
     description:
-      "Integrating modern AI features and smart automation tools to enhance user experiences and application capabilities.",
+      "Integrating modern AI features and smart automation tools to enhance user experiences and capabilities.",
+    iconClass: "bx bx-brain",
     items: [
-      "Integrating OpenAI and custom LLM APIs.",
-      "Developing intelligent Chatbot features.",
-      "Workflow automation and smart data parsing.",
+      "Integrating OpenAI & LLM APIs.",
+      "Intelligent Chatbot features.",
+      "Workflow automation parsing.",
     ],
   },
   {
     title: "Frontend\nDevelopment",
-    modalTitle: "Frontend Development",
     description:
       "Creating responsive, visually engaging, and highly dynamic user interfaces tailored to perfect client needs.",
+    iconClass: "bx bx-layer",
     items: [
-      "Building high-performance React and Next.js apps.",
-      "Developing fully responsive and mobile-first UI designs.",
-      "Implementing smooth web animations and transitions.",
+      "High-performance React & Next.js.",
+      "Responsive mobile-first designs.",
+      "Smooth animations & transitions.",
     ],
   },
   {
     title: "Backend\nDevelopment",
-    modalTitle: "Backend Development",
     description:
       "Developing robust, secure, and easily scalable backend architectures to support heavy data loads.",
+    iconClass: "bx bx-server",
     items: [
-      "Creating robust Node.js and Express APIs.",
-      "Implementing secure authentication and authorization protocols.",
-      "Efficient backend services and third-party API integration.",
+      "Robust Node.js & Express APIs.",
+      "Secure authentication protocols.",
+      "Efficient backend services.",
     ],
   },
   {
     title: "Performance\nOptimization",
-    modalTitle: "Optimization",
     description:
       "Improving system performance, load speeds, SEO optimization, and clean code refactoring.",
+    iconClass: "bx bx-tachometer",
     items: [
-      "Boosting web application performance and Core Web Vitals.",
-      "Code refactoring and reducing technical debt.",
-      "Following industry-standard web best practices.",
+      "Boosting Core Web Vitals.",
+      "Code refactoring & debt reduction.",
+      "Industry web best practices.",
     ],
   },
   {
     title: "Database\nDesign",
-    modalTitle: "Database Design",
     description:
       "Designing structured, efficient, and secure relational or non-relational data storage frameworks.",
+    iconClass: "bx bx-data",
     items: [
-      "Designing optimized database schemas (SQL/NoSQL).",
-      "Building secure and reliable CRUD systems.",
-      "Query optimization and indexing for faster access.",
+      "Optimized database schemas.",
+      "Secure & reliable CRUD systems.",
+      "Query optimization & indexing.",
     ],
   },
 ];
 
 export default function Services() {
-  const [activeModal, setActiveModal] = useState(null);
-
-  const openModal = (index) => setActiveModal(index);
-  const closeModal = () => setActiveModal(null);
+  const [activeHover, setActiveHover] = useState(null);
 
   return (
-    <section className="services section">
+    <section className="services section" style={{ overflow: "hidden" }}>
       <span className="section__subtitle">My Services</span>
       <h2 className="section__title">What I Offer</h2>
 
-      {/* Main Wrapper Container Box */}
       <div
         className="services__main-wrapper"
         style={{
@@ -91,35 +88,34 @@ export default function Services() {
           maxWidth: "1150px",
           margin: "0 auto",
           borderRadius: "20px",
-          /* Changed overflow away from 'hidden' to prevent the main box container 
-             from cutting off expanded card popups on the top/bottom edges.
-          */
-          overflow: "visible",
+          overflow: "hidden",
           background:
-            "radial-gradient(circle at 50% 50%, #0a0c14 0%, #020306 100%)",
+            "linear-gradient(to bottom, #020204 0%, #080b12 50%, #020204 100%)",
           border: "1px solid rgba(255, 255, 255, 0.02)",
-          padding: "3rem 0",
+          padding: "4rem 0",
+          boxSizing: "border-box",
         }}
       >
-        {/* Premium Deep Blue Wavy Animation Layer */}
+        {/* Premium Center-Aligned Blue Wavy Animation Layer */}
         <div
           className="services__bg-waves"
           style={{
             position: "absolute",
-            top: 0,
-            left: 0,
+            top: "50%",
+            left: "0",
             width: "100%",
-            height: "100%",
+            height: "60%",
+            transform: "translateY(-50%)",
             zIndex: 1,
             pointerEvents: "none",
-            opacity: 0.45,
-            overflow:
-              "hidden" /* Keeps the waves bound perfectly inside the wrapper border radius */,
-            borderRadius: "20px",
+            opacity: 0.55,
+            overflow: "hidden",
           }}
         >
           <svg
             style={{ width: "100%", height: "100%" }}
+            viewBox="0 0 1440 600"
+            preserveAspectRatio="none"
             xmlns="http://www.w3.org/2000/svg"
           >
             <defs>
@@ -128,123 +124,251 @@ export default function Services() {
                 x1="0%"
                 y1="0%"
                 x2="100%"
-                y2="100%"
+                y2="0%"
               >
-                <stop offset="0%" stopColor="rgba(0, 102, 255, 0.15)" />
-                <stop offset="50%" stopColor="rgba(0, 221, 255, 0.03)" />
-                <stop offset="100%" stopColor="rgba(0, 51, 204, 0.12)" />
+                <stop offset="0%" stopColor="rgba(0, 102, 255, 0.2)" />
+                <stop offset="50%" stopColor="rgba(0, 221, 255, 0.04)" />
+                <stop offset="100%" stopColor="rgba(0, 51, 204, 0.15)" />
               </linearGradient>
             </defs>
-            {/* Wave Path 1 */}
             <path
-              d="M 0 420 Q 350 250, 700 420 T 1400 420 T 2100 420 V 1200 H 0 Z"
+              d="M 0 300 Q 360 150, 720 300 T 1440 300 V 600 H 0 Z"
               fill="url(#blueWaveGrad)"
             >
               <animate
                 attributeName="d"
-                dur="12s"
+                dur="10s"
                 repeatCount="indefinite"
                 values="
-                  M 0 420 Q 350 250, 700 420 T 1400 420 T 2100 420 V 1200 H 0 Z;
-                  M 0 420 Q 350 580, 700 420 T 1400 280 T 2100 420 V 1200 H 0 Z;
-                  M 0 420 Q 350 250, 700 420 T 1400 420 T 2100 420 V 1200 H 0 Z
-                "
+                  M 0 300 Q 360 150, 720 300 T 1440 300 V 600 H 0 Z;
+                  M 0 300 Q 360 450, 720 300 T 1440 150 V 600 H 0 Z;
+                  M 0 300 Q 360 150, 720 300 T 1440 300 V 600 H 0 Z"
               />
             </path>
-            {/* Wave Path 2 */}
             <path
-              d="M 0 480 Q 450 580, 900 380 T 1800 480 T 2100 480 V 1200 H 0 Z"
+              d="M 0 350 Q 400 450, 800 250 T 1440 350 V 600 H 0 Z"
               fill="url(#blueWaveGrad)"
               opacity="0.6"
             >
               <animate
                 attributeName="d"
-                dur="18s"
+                dur="15s"
                 repeatCount="indefinite"
                 values="
-                  M 0 480 Q 450 580, 900 380 T 1800 480 T 2100 480 V 1200 H 0 Z;
-                  M 0 480 Q 450 280, 900 480 T 1800 320 T 2100 480 V 1200 H 0 Z;
-                  M 0 480 Q 450 580, 900 380 T 1800 480 T 2100 480 V 1200 H 0 Z
-                "
+                  M 0 350 Q 400 450, 800 250 T 1440 350 V 600 H 0 Z;
+                  M 0 350 Q 400 150, 800 350 T 1440 200 V 600 H 0 Z;
+                  M 0 350 Q 400 450, 800 250 T 1440 350 V 600 H 0 Z"
               />
             </path>
           </svg>
         </div>
 
+        {/* Global CSS for Perfect Layout Spacing & Centered Alignment */}
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `
+          .services__grid-container {
+            position: relative;
+            z-index: 2;
+          }
+
+          .premium__fixed-card {
+            background: rgba(255, 255, 255, 0.01);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden !important;
+            padding: 2.2rem 1.6rem !important; 
+            min-height: 380px; 
+            max-height: 380px; 
+            box-sizing: border-box;
+            transition: border-color 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+                        background-color 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+                        transform 0.4s cubic-bezier(0.25, 1, 0.5, 1),
+                        opacity 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center; /* सर्व कंटेंटला क्षैतिज (Horizontally) सेंटर करण्यासाठी */
+          }
+
+          @media screen and (max-width: 768px) {
+            .premium__fixed-card {
+              min-height: 360px !important;
+              max-height: 360px !important;
+              padding: 1.8rem 1.3rem !important;
+            }
+          }
+
+          .premium__fixed-card:hover {
+            border-color: rgba(0, 102, 255, 0.35);
+            background: rgba(255, 255, 255, 0.02);
+            transform: scale(1.015);
+          }
+
+          .services__grid-container:has(.premium__fixed-card:hover) .premium__fixed-card:not(:hover) {
+            transform: scale(0.975);
+            opacity: 0.6;
+          }
+
+          /* HEADER BOX: सुरुवातीला परफेक्ट सेंटरमध्ये राहण्यासाठी आणि हॉव्हरवर वर सरकण्यासाठी */
+          .card__header-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* आयकॉन आणि टायटल सेंटरला अलाइन */
+            text-align: center; /* टेक्स्ट सेंटर करण्यासाठी */
+            width: 100%;
+            transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(75px); /* सुरुवातीला परफेक्ट व्हर्टिकल सेंटर पोझिशन */
+            z-index: 2;
+          }
+
+          .premium__fixed-card.is-card-hovered .card__header-box {
+            transform: translateY(0px); /* हॉव्हर केल्यावर स्मूथली वर जाईल */
+          }
+
+          .card__icon-element {
+            font-size: 2.6rem; 
+            color: rgba(255, 255, 255, 0.6);
+            transition: transform 0.4s ease, color 0.4s ease;
+          }
+          
+          .premium__fixed-card:hover .card__icon-element {
+            color: #00ddff;
+            transform: rotate(-4deg) scale(1.02);
+          }
+
+          /* BODY CONTENT: डाव्या बाजूने व्यवस्थित सुरू होण्यासाठी */
+          .card__body-content {
+            margin-top: 0.6rem;
+            z-index: 3;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            align-items: flex-start; /* आतील टायपिंग डिस्क्रिप्शन डावीकडून सुरू होईल */
+            text-align: left;
+          }
+
+          .premium__fixed-card.is-card-hovered .card__body-content {
+            opacity: 1;
+          }
+
+          .fixed__panel-desc {
+            font-size: 0.84rem;
+            color: rgba(255, 255, 255, 0.72);
+            line-height: 1.45;
+            margin-bottom: 0.6rem;
+            min-height: 55px;
+          }
+
+          .fixed__panel-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.45rem;
+            width: 100%;
+          }
+
+          .fixed__panel-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.45rem;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.25;
+          }
+
+          .fixed__panel-item i {
+            color: #00ddff;
+            margin-top: 1px;
+            font-size: 0.85rem;
+            flex-shrink: 0;
+            opacity: 0;
+            transition: opacity 0.15s ease;
+          }
+
+          .premium__fixed-card.is-card-hovered .fixed__panel-item i {
+            opacity: 1;
+          }
+        `,
+          }}
+        />
+
         {/* 6 Cards Grid Container */}
-        <div
-          className="services__container container grid"
-          style={{ position: "relative", zIndex: 2 }}
-        >
-          {servicesData.map((service, index) => (
-            <div
-              className="services__card"
-              key={index}
-              style={{
-                background: "rgba(255, 255, 255, 0.01)",
-                backdropFilter: "blur(12px)",
-                WebkitBackdropFilter: "blur(12px)",
-                border: "1px solid rgba(255, 255, 255, 0.04)",
-                borderRadius: "12px",
-                position: "relative",
-                /* CRITICAL FIX: Dynamically elevates the specific card when its popup is active.
-                   This brings the active content to the absolute front of the grid layout stack.
-                */
-                zIndex: activeModal === index ? 50 : 5,
-                /* Ensures content handles any layout overflow gracefully */
-                overflow: activeModal === index ? "visible" : "hidden",
-              }}
-            >
-              <h3 className="services__title">
-                {service.title.split("\n").map((line, i) => (
-                  <span key={i}>
-                    {line}
-                    {i < service.title.split("\n").length - 1 && <br />}
-                  </span>
-                ))}
-              </h3>
+        <div className="services__container container grid services__grid-container">
+          {servicesData.map((service, index) => {
+            const isHovered = activeHover === index;
 
-              <span
-                className="services__button"
-                onClick={() => openModal(index)}
-                style={{ cursor: "pointer" }}
-              >
-                See More <i className="bx bx-right-arrow services__icon"></i>
-              </span>
-
-              {/* Popups/Modals inside the card loop structure */}
+            return (
               <div
-                className={`services__modal ${
-                  activeModal === index ? "active-modal" : ""
-                }`}
+                className={`premium__fixed-card ${isHovered ? "is-card-hovered" : ""}`}
+                key={index}
+                onMouseEnter={() => setActiveHover(index)}
+                onMouseLeave={() => setActiveHover(null)}
               >
-                <div className="services__modal-content">
-                  <i
-                    className="bx bx-x services__modal-close"
-                    onClick={closeModal}
-                    style={{ cursor: "pointer" }}
-                  ></i>
-
-                  <h3 className="services__modal-title">
-                    {service.modalTitle}
+                {/* Centered Header Section (Icon & Title) */}
+                <div className="card__header-box">
+                  <div className="card__icon-element">
+                    <i className={service.iconClass}></i>
+                  </div>
+                  <h3
+                    className="services__title"
+                    style={{
+                      marginTop: "0.6rem",
+                      lineHeight: "1.25",
+                      fontSize: "1.15rem",
+                    }}
+                  >
+                    {service.title.split("\n").map((line, i) => (
+                      <span key={i}>
+                        {line}
+                        {i < service.title.split("\n").length - 1 && <br />}
+                      </span>
+                    ))}
                   </h3>
+                </div>
 
-                  <p className="services__modal-description">
-                    {service.description}
-                  </p>
+                {/* Inline Typing Content Area */}
+                <div className="card__body-content">
+                  <div className="fixed__panel-desc">
+                    {isHovered && (
+                      <TypeAnimation
+                        sequence={[service.description]}
+                        speed={92}
+                        cursor={false}
+                        wrapper="p"
+                      />
+                    )}
+                  </div>
 
-                  <ul className="services__modal-list">
+                  <ul className="fixed__panel-list">
                     {service.items.map((item, i) => (
-                      <li className="services__modal-item" key={i}>
+                      <li className="fixed__panel-item" key={i}>
                         <i className="bx bx-check-circle"></i>
-                        <p className="services__modal-info">{item}</p>
+                        <span>
+                          {isHovered && (
+                            <TypeAnimation
+                              sequence={[
+                                i === 0 ? 300 : i === 1 ? 1000 : 1700,
+                                item,
+                              ]}
+                              speed={95}
+                              cursor={false}
+                              wrapper="span"
+                            />
+                          )}
+                        </span>
                       </li>
                     ))}
                   </ul>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
