@@ -6,14 +6,6 @@ import { useEffect } from "react";
  * Renders nothing visually.
  * Dynamically imports ScrollReveal (browser-only) and wires up
  * reveal effects for all sections.
- *
- * Changes from original:
- *  - reset: false  → animations fire once and stay; avoids re-trigger jank
- *    when scrolling back up through sections.
- *  - Shorter duration (1800ms) for a snappier, more modern feel.
- *  - Services cards target the new .services__premium-card class.
- *  - Staggered interval on work cards and experience cards for a
- *    cascade effect.
  */
 export default function Animations() {
   useEffect(() => {
@@ -24,7 +16,7 @@ export default function Animations() {
         duration: 1800,
         delay: 300,
         easing: "cubic-bezier(0.16, 1, 0.3, 1)",
-        reset: false, // fire once — no re-trigger jank on scroll-up
+        reset: false,
       });
 
       /* ── Header nav ── */

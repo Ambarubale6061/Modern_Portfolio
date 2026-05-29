@@ -25,7 +25,6 @@ export default function Page() {
         <Contact />
       </main>
       <Footer />
-      {/* Initialises ScrollReveal after all sections are mounted */}
       <Animations />
     </>
   );
