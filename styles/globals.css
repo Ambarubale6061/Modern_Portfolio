@@ -5,7 +5,7 @@
 :root {
   --header-height: 3.5rem;
 
-  /*========== Colors ==========*/
+  /*========== Original Lavender / Periwinkle Theme Colors ==========*/
   --first-hue: 250;
   --sat: 66%;
   --lig: 75%;
@@ -74,7 +74,6 @@ textarea {
 body {
   background-color: var(--body-color);
   color: var(--text-color);
-  /* Smooth transition covers bg, text, and all inherited colours */
   transition:
     background-color 0.4s ease,
     color 0.4s ease;
@@ -119,9 +118,6 @@ img {
 
 /*========================================
   LIGHT THEME — variable overrides
-  Everything that uses a CSS var picks up
-  the new value automatically; only things
-  that need an explicit colour are listed.
 ==========================================*/
 body.light-theme {
   --title-color: hsl(var(--second-hue), 15%, 15%);
@@ -131,7 +127,6 @@ body.light-theme {
   --container-color: hsl(var(--second-hue), 20%, 92%);
 }
 
-/*-- Subtitle & misc shared overrides --*/
 .light-theme .section__subtitle {
   color: var(--text-color);
 }

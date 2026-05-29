@@ -50,6 +50,8 @@ const testimonialsData = [
 export default function Testimonials() {
   return (
     <section className="testimonial section" id="testimonials">
+      <style dangerouslySetInnerHTML={{ __html: styles }} />
+
       <span className="section__subtitle">
         Kind words from Satisfied Clients
       </span>
@@ -77,20 +79,16 @@ export default function Testimonials() {
         {testimonialsData.map((t, i) => (
           <SwiperSlide key={i} className="testimonial__slide">
             <div className="testimonial__card">
-              {/* Top Row: Quote & Company Badge */}
               <div className="testimonial__header">
                 <span className="testimonial__quote">&ldquo;</span>
                 <span className="testimonial__company-badge">{t.company}</span>
               </div>
 
-              {/* Text Content */}
               <p className="testimonial__description">{t.text}</p>
 
-              {/* Bottom Profile Row */}
               <div className="testimonial__profile">
                 <div className="testimonial__avatar-box">
                   {t.image ? (
-                    /* eslint-disable-next-line @next/next/no-img-element */
                     <img
                       src={t.image}
                       alt={t.name}
@@ -112,9 +110,55 @@ export default function Testimonials() {
           </SwiperSlide>
         ))}
 
-        {/* Dynamic Pagination Bullets Target wrapper */}
         <div className="swiper-pagination"></div>
       </Swiper>
     </section>
   );
 }
+
+const styles = `
+  .testimonial__container { padding-bottom: 4.5rem !important; position: relative; }
+  .testimonial__container .swiper-wrapper { display: flex !important; align-items: stretch !important; }
+  .testimonial__slide { height: auto !important; display: flex !important; }
+  .testimonial__card {
+    background-color: var(--container-color);
+    padding: 2rem;
+    border-radius: 1.25rem;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    border: 1px solid hsla(var(--first-hue), var(--sat), var(--lig), 0.05);
+    transition: transform 0.3s ease;
+  }
+  .testimonial__card:hover { transform: translateY(-4px); }
+  .testimonial__header { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 1.25rem; }
+  .testimonial__quote { font-family: serif; font-size: 3.5rem; line-height: 1; color: var(--first-color); user-select: none; }
+  .testimonial__company-badge {
+    font-size: 0.65rem; font-weight: var(--font-bold); text-transform: uppercase; letter-spacing: 1px;
+    color: var(--first-color); background-color: hsla(var(--first-hue), var(--sat), var(--lig), 0.1);
+    padding: 0.3rem 0.75rem; border-radius: 5rem; border: 1px solid hsla(var(--first-hue), var(--sat), var(--lig), 0.15);
+  }
+  .testimonial__description { font-size: var(--small-font-size); color: var(--text-color); line-height: 1.6; font-style: italic; margin-bottom: 2rem; flex-grow: 1; }
+  .testimonial__profile { display: flex; align-items: center; column-gap: 0.75rem; padding-top: 1.25rem; border-top: 1px solid hsla(var(--first-hue), var(--sat), var(--lig), 0.08); }
+  .testimonial__avatar-box { width: 2.5rem; height: 2.5rem; border-radius: 50%; overflow: hidden; flex-shrink: 0; background-color: var(--body-color); border: 2px solid hsla(var(--first-hue), var(--sat), var(--lig), 0.15); }
+  .testimonial__img { width: 100%; height: 100%; object-fit: cover; }
+  .testimonial__avatar-fallback { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background-color: hsla(var(--first-hue), var(--sat), var(--lig), 0.2); color: var(--first-color); font-size: var(--smaller-font-size); font-weight: var(--font-bold); }
+  .testimonial__name { font-size: var(--normal-font-size); font-weight: var(--font-semibold); color: var(--title-color); margin-bottom: 0.15rem; }
+  .testimonial__role { font-size: var(--smaller-font-size); color: var(--text-color-light); font-weight: var(--font-medium); }
+  .testimonial__container .swiper-pagination { bottom: 1rem !important; }
+  .swiper-pagination-bullet { background-color: var(--text-color-light); opacity: 0.3; transition: background-color 0.3s, opacity 0.3s; }
+  .swiper-pagination-bullet-active { background-color: var(--first-color); opacity: 1; }
+  .light-theme .testimonial__card { box-shadow: 0 4px 20px hsla(var(--second-hue), 48%, 8%, 0.04); }
+
+  @media screen and (max-width: 576px) {
+    .testimonial__container { padding-bottom: 5rem !important; }
+    .testimonial__card { padding: 1.5rem; margin-bottom: 1.5rem; }
+    .testimonial__container .swiper-pagination { bottom: 0.5rem !important; }
+  }
+  @media screen and (min-width: 630px) { .testimonial__container { width: 600px; margin: auto; } }
+  @media screen and (min-width: 768px) { .testimonial__container { width: 720px; } }
+  @media screen and (min-width: 992px) { .testimonial__container { width: 950px; } }
+`;

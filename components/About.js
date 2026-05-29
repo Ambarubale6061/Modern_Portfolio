@@ -4,16 +4,16 @@ import { useState } from "react";
 export default function About() {
   const [isHovered, setIsHovered] = useState(false);
 
-  // Default button styles (adjust colors if your theme uses a specific accent color)
+  // Button styles tuned to your original theme accent color
   const buttonStyle = {
     display: "inline-block",
     padding: "0.75rem 1.5rem",
     borderRadius: "0.5rem",
     fontWeight: "500",
     transition: "0.3s",
-    border: "2px solid var(--first-color, #4070f4)",
-    backgroundColor: isHovered ? "transparent" : "var(--first-color, #4070f4)",
-    color: isHovered ? "var(--first-color, #4070f4)" : "#fff",
+    border: "2px solid var(--first-color)",
+    backgroundColor: isHovered ? "transparent" : "var(--first-color)",
+    color: isHovered ? "var(--first-color)" : "var(--body-color)",
   };
 
   return (
@@ -80,6 +80,117 @@ export default function About() {
           </a>
         </div>
       </div>
+
+      {/* Embedded Scoped CSS for About Section */}
+      <style jsx>{`
+        .about__container {
+          row-gap: 2.5rem;
+        }
+
+        .about__img {
+          width: 220px;
+          border-radius: 1.5rem;
+          justify-self: center;
+        }
+
+        .about__data {
+          text-align: center;
+        }
+
+        .about__info {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 0.5rem;
+          margin-bottom: 2rem;
+        }
+
+        .about__box {
+          background-color: var(--container-color);
+          border-radius: 0.75rem;
+          padding: 0.75rem 0.5rem;
+        }
+
+        .about__icon {
+          font-size: 1.5rem;
+          color: var(--first-color);
+          margin-bottom: 0.5rem;
+        }
+
+        .about__title {
+          font-size: var(--small-font-size);
+        }
+
+        .about__subtitle {
+          font-size: var(--tiny-font-size);
+          color: var(--text-color-light);
+        }
+
+        .about__description {
+          margin-bottom: 2rem;
+        }
+
+        /* Light theme target logic */
+        :global(body.light-theme) .about__box {
+          box-shadow: 0 2px 16px hsla(var(--second-hue), 48%, 8%, 0.1);
+        }
+
+        /* Isolated Mobile view breakpoint adjustments */
+        @media screen and (max-width: 320px) {
+          .about__info {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+
+        /* Medium screens layout rules */
+        @media screen and (min-width: 630px) {
+          .about__info {
+            grid-template-columns: repeat(3, 180px);
+            justify-content: center;
+          }
+
+          .about__description {
+            padding: 1rem 5rem;
+            width: 600px;
+            margin: 0 auto 2rem auto;
+          }
+
+          .about__box {
+            padding: 1.75rem 0.95rem;
+          }
+        }
+
+        /* Large screens / Unchanged desktop view logic */
+        @media screen and (min-width: 992px) {
+          .about__container {
+            grid-template-columns: repeat(2, 1fr);
+            align-items: center;
+            column-gap: 4rem;
+          }
+
+          .about__img {
+            width: 350px;
+          }
+
+          .about__data {
+            text-align: initial;
+          }
+
+          .about__info {
+            justify-content: initial;
+            gap: 2rem;
+          }
+
+          .about__box {
+            text-align: center;
+            padding: 1rem 1.25rem;
+          }
+
+          .about__description {
+            padding: 0 4rem 0 0;
+            margin-bottom: 2.5rem;
+          }
+        }
+      `}</style>
     </section>
   );
 }

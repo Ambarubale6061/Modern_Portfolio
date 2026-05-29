@@ -57,13 +57,12 @@ export default function Home() {
           <div className="home__button">
             <a
               download=""
-              href="/assets/pdf/ambar-cv.pdf"
+              href="/ambar-cv.pdf"
               className="button button--ghost"
             >
               Download CV
             </a>
 
-            {/* About बटनवर हॉव्हर केल्यावर 'Download CV' सारखा ट्रान्सपरंट इफेक्ट दिसेल */}
             <a
               href="#about"
               className="button"
@@ -87,11 +86,7 @@ export default function Home() {
 
         <div className="home__handle">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/assets/img/perfil.png"
-            alt="Profile"
-            className="home__img"
-          />
+          <img src="#" alt="Profile" className="home__img" />
         </div>
 
         <div className="home__social">
@@ -126,6 +121,206 @@ export default function Home() {
           <span className="home__scroll-name">Scroll Down</span>
         </a>
       </div>
+
+      {/* Internal Scoped CSS to completely eliminate separate Home.css file */}
+      <style jsx>{`
+        .home__container {
+          position: relative;
+          row-gap: 4.5rem;
+          padding-top: 2rem;
+        }
+
+        .home__data {
+          text-align: center;
+        }
+
+        .home__greeting,
+        .home__education {
+          font-size: var(--small-font-size);
+          font-weight: var(--font-medium);
+        }
+
+        .home__greeting {
+          display: block;
+          color: var(--title-color);
+          margin-bottom: 0.25rem;
+        }
+
+        .home__education {
+          color: var(--text-color);
+          margin-bottom: 2.5rem;
+          font-size: var(--small-font-size);
+          font-weight: var(--font-medium);
+        }
+
+        .home__name {
+          font-size: var(--biggest-font-size);
+          color: var(--first-color);
+        }
+
+        .home__img {
+          width: 160px;
+        }
+
+        .home__handle {
+          justify-self: center;
+          width: 190px;
+          height: 293px;
+          background: linear-gradient(
+            180deg,
+            hsla(var(--first-hue), var(--sat), var(--lig), 0.5),
+            hsla(var(--first-hue), var(--sat), var(--lig), 0.1)
+          );
+          border-radius: 10rem 10rem 1rem 1rem;
+          display: flex;
+          align-items: flex-end;
+          justify-content: center;
+          overflow: hidden;
+        }
+
+        .home__button {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 1rem;
+        }
+
+        .home__button .button {
+          border: 2px solid transparent;
+          transition:
+            background-color 0.3s ease,
+            color 0.3s ease,
+            border-color 0.3s ease;
+        }
+
+        .home__button .button:not(.button--ghost):hover {
+          background-color: transparent !important;
+          color: var(--first-color) !important;
+          border-color: var(--first-color);
+        }
+
+        .home__button .button--ghost {
+          background-color: transparent;
+          color: var(--first-color);
+          border: 2px solid var(--first-color);
+        }
+
+        .home__button .button--ghost:hover {
+          background-color: var(--first-color);
+          color: #fff;
+        }
+
+        .home__social,
+        .home__scroll {
+          position: absolute;
+        }
+
+        .home__social {
+          bottom: 4rem;
+          left: 0;
+          display: grid;
+          row-gap: 0.5rem;
+        }
+
+        .home__social-link {
+          width: max-content;
+          background-color: var(--container-color);
+          color: var(--first-color);
+          padding: 0.25rem;
+          border-radius: 0.5rem;
+          display: flex;
+          font-size: 1rem;
+          transition:
+            background-color 0.4s ease,
+            color 0.4s ease,
+            box-shadow 0.4s ease;
+        }
+
+        .home__social-link:hover {
+          background-color: var(--first-color);
+          color: #ffffff;
+        }
+
+        .home__social::after {
+          content: "";
+          width: 32px;
+          height: 1px;
+          background-color: var(--first-color);
+          transform: rotate(90deg) translate(16px, 4px);
+        }
+
+        .home__scroll {
+          color: var(--first-color);
+          right: -1.5rem;
+          bottom: 4rem;
+          display: grid;
+          row-gap: 2.25rem;
+          justify-items: center;
+        }
+
+        .home__scroll-icon {
+          font-size: 1.25rem;
+        }
+
+        .home__scroll-name {
+          font-size: var(--smaller-font-size);
+          transform: rotate(-90deg);
+        }
+
+        :global(body.light-theme) .home__social-link {
+          box-shadow: 0 2px 16px hsla(var(--second-hue), 48%, 8%, 0.1);
+        }
+
+        :global(body.light-theme) .home__social::after {
+          background-color: var(--title-color);
+        }
+
+        :global(body.light-theme) .home__social-link,
+        :global(body.light-theme) .home__scroll {
+          color: var(--title-color);
+        }
+
+        /* Isolated Mobile view layout logic */
+        @media screen and (max-width: 320px) {
+          .home__button {
+            flex-direction: column;
+          }
+
+          .home__handle {
+            width: 150px;
+            height: 253px;
+          }
+
+          .home__img {
+            width: 130px;
+          }
+        }
+
+        /* Desktop view layout logic remains un-shifted */
+        @media screen and (min-width: 992px) {
+          .home__handle {
+            width: 290px;
+            height: 400px;
+          }
+
+          .home__img {
+            width: 220px;
+          }
+
+          .home__social-link {
+            padding: 0.4rem;
+            font-size: 1.25rem;
+          }
+
+          .home__social::after {
+            transform: rotate(90deg) translate(16px, -1px);
+          }
+
+          .home__scroll-icon {
+            font-size: 2rem;
+          }
+        }
+      `}</style>
     </section>
   );
 }

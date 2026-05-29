@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 
 const experienceData = [
   {
@@ -17,26 +17,29 @@ const experienceData = [
       "Gained hands-on experience in full-stack development, API integration, and real-world problem solving, delivering high-quality features in a collaborative environment.",
     ],
     techStack: [
-      { name: "React", icon: "bx bxl-react", color: "#61DAFB" },
-      { name: "Node.js", icon: "bx bxl-nodejs", color: "#339933" },
-      { name: "MongoDB", icon: "bx bxl-mongodb", color: "#47A248" },
-      { name: "Tailwind", icon: "bx bxl-tailwind-css", color: "#06B6D4" },
-      { name: "Firebase", icon: "bx bxl-firebase", color: "#FFCA28" },
-      { name: "Java", icon: "bx bxl-java", color: "#007396" },
-      { name: "Spring Boot", icon: "bx bx-server", color: "#6DB33F" },
-      { name: "Express", icon: "bx bx-code-block", color: "#ffffff" },
-      { name: "JavaScript", icon: "bx bxl-javascript", color: "#F7DF1E" },
-      { name: "Supabase", icon: "bx bx-data", color: "#3ECF8E" },
-      { name: "Next.js", icon: "bx bxl-visual-studio", color: "#ffffff" },
+      { id: 1, name: "React", img: "/React.png" },
+      { id: 2, name: "Node.js", img: "/Node.js.png" },
+      { id: 3, name: "MongoDB", img: "/MongoDB.png" },
+      { id: 4, name: "Tailwind", img: "/Tailwind CSS.png" },
+      { id: 5, name: "Firebase", img: "/Firebase.png" },
+      { id: 6, name: "Java", img: "/Java.png" },
+      { id: 7, name: "Spring Boot", img: "/Spring.png" },
+      { id: 8, name: "Express", img: "/ex.png" },
+      { id: 9, name: "JavaScript", img: "/JavaScript.png" },
+      { id: 10, name: "TypeScript", img: "/ts.svg" },
+      { id: 11, name: "Git", img: "/git.svg" },
+      { id: 14, name: "Supabase", img: "/icons8-supabase-48.png" },
+      { id: 15, name: "Docker", img: "/dock.svg" },
+      { id: 16, name: "Next.js", img: "/next.svg" },
     ],
   },
 ];
 
 export default function Experience() {
-  const [hoveredIndex, setHoveredIndex] = useState(null);
-
   return (
     <section className="experience section" id="experience">
+      <style dangerouslySetInnerHTML={{ __html: styles }} />
+
       <span className="section__subtitle">My Journey</span>
       <h2 className="section__title">Experience</h2>
 
@@ -45,14 +48,15 @@ export default function Experience() {
           <div className="experience__card" key={index}>
             <div className="experience__header">
               <div className="experience__img-box">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={item.thumbnail}
                   alt={item.company}
                   className="experience__thumb-img"
                   onError={(e) => {
-                    e.target.style.display = "none";
-                    e.target.nextSibling.style.display = "block";
+                    e.currentTarget.style.display = "none";
+                    if (e.currentTarget.nextSibling) {
+                      e.currentTarget.nextSibling.style.display = "block";
+                    }
                   }}
                 />
                 <i
@@ -66,30 +70,12 @@ export default function Experience() {
                 <span className="experience__company">{item.company}</span>
               </div>
 
-              {/* Verify Button: हुबेहूब Home मधील About बटन सारखा इफेक्ट */}
               {item.certificateUrl && (
                 <a
                   href={item.certificateUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="experience__verify-btn"
-                  onMouseEnter={() => setHoveredIndex(index)}
-                  onMouseLeave={() => setHoveredIndex(null)}
-                  style={{
-                    backgroundColor:
-                      hoveredIndex === index
-                        ? "transparent"
-                        : "var(--first-color)",
-                    color:
-                      hoveredIndex === index ? "var(--text-color)" : "#fff",
-                    borderColor:
-                      hoveredIndex === index
-                        ? "var(--text-color)"
-                        : "transparent",
-                    borderStyle: "solid",
-                    borderWidth: "2px",
-                    transition: "all 0.3s ease",
-                  }}
                 >
                   <i className="bx bx-badge-check"></i>
                   <span>VERIFY</span>
@@ -119,12 +105,13 @@ export default function Experience() {
             </ul>
 
             <div className="experience__tech-wrapper">
-              {item.techStack.map((tech, tIdx) => (
-                <div key={tIdx} className="experience__tech-badge">
-                  <i
-                    className={`${tech.icon} experience__tech-icon`}
-                    style={{ color: tech.color }}
-                  ></i>
+              {item.techStack.map((tech) => (
+                <div key={tech.id} className="experience__tech-badge">
+                  <img
+                    src={tech.img}
+                    alt={tech.name}
+                    className="experience__tech-img"
+                  />
                   <span className="experience__tech-tooltip">{tech.name}</span>
                 </div>
               ))}
@@ -135,3 +122,36 @@ export default function Experience() {
     </section>
   );
 }
+
+const styles = `
+  .experience__container { max-width: 700px; margin: 0 auto; padding-top: 1rem; display: grid; row-gap: 1.5rem; }
+  .experience__card { background-color: var(--container-color); border-radius: 1.25rem; padding: 1.5rem; border-left: 3px solid var(--first-color); transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1); position: relative; }
+  .experience__card:hover { transform: translateY(-6px); }
+  .experience__header { display: flex; align-items: center; column-gap: 1rem; margin-bottom: 0.75rem; position: relative; }
+  .experience__img-box { width: 2.75rem; height: 2.75rem; border-radius: 50%; overflow: hidden; display: flex; align-items: center; justify-content: center; flex-shrink: 0; border: 1px solid hsla(var(--first-hue), var(--sat), var(--lig), 0.2); background-color: var(--body-color); }
+  .experience__thumb-img { width: 100%; height: 100%; object-fit: cover; }
+  .experience__icon { font-size: 1.5rem; color: var(--first-color); }
+  .experience__info { flex: 1; }
+  .experience__title { font-size: var(--h3-font-size); font-weight: var(--font-semibold); color: var(--title-color); margin-bottom: 0.15rem; }
+  .experience__company { font-size: var(--small-font-size); color: var(--first-color); font-weight: var(--font-medium); }
+  .experience__meta { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
+  .experience__period, .experience__location { display: inline-flex; align-items: center; column-gap: 0.3rem; font-size: var(--smaller-font-size); color: var(--text-color-light); background-color: hsla(var(--first-hue), var(--sat), var(--lig), 0.1); padding: 0.2rem 0.65rem; border-radius: 5rem; }
+  .experience__period-icon { font-size: 0.85rem; }
+  .experience__bullets { display: grid; row-gap: 0.65rem; margin-bottom: 1.25rem; list-style: none; padding: 0; }
+  .experience__bullet-item { display: flex; align-items: flex-start; column-gap: 0.5rem; }
+  .experience__bullet-marker { color: var(--first-color); font-size: 0.8rem; margin-top: 0.15rem; }
+  .experience__description { font-size: var(--small-font-size); color: var(--text-color); line-height: 1.6; margin: 0; }
+  .experience__verify-btn { display: inline-flex; align-items: center; column-gap: 0.35rem; font-size: var(--smaller-font-size); font-weight: var(--font-bold); background-color: #0f172a; color: #fff; padding: 0.45rem 0.9rem; border-radius: 5rem; box-sizing: border-box; text-decoration: none; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1); transition: all 0.3s ease; cursor: pointer; }
+  .experience__verify-btn:hover { background-color: #2563eb; transform: translateY(-1px); box-shadow: 0 4px 8px rgba(37, 99, 235, 0.2); }
+  .experience__verify-link-icon { font-size: 0.75rem; transition: transform 0.3s ease; }
+  .experience__verify-btn:hover .experience__verify-link-icon { transform: translate(1px, -1px); }
+  .experience__tech-wrapper { display: flex; flex-wrap: wrap; gap: 0.6rem; padding-top: 1rem; border-top: 1px solid hsla(var(--first-hue), var(--sat), var(--lig), 0.1); }
+  .experience__tech-badge { position: relative; width: 2.3rem; height: 2.3rem; background-color: var(--body-color); border: 1px solid hsla(var(--first-hue), var(--sat), var(--lig), 0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: transform 0.3s; }
+  .experience__tech-badge:hover { transform: scale(1.15); }
+  .experience__tech-img { width: 60%; height: 60%; object-fit: contain; }
+  .experience__tech-tooltip { position: absolute; bottom: 125%; left: 50%; transform: translateX(-50%); background-color: var(--title-color); color: var(--body-color); font-size: 0.65rem; font-weight: var(--font-medium); padding: 0.25rem 0.5rem; border-radius: 0.25rem; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; white-space: nowrap; z-index: 10; box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); }
+  .experience__tech-badge:hover .experience__tech-tooltip { opacity: 1; }
+  @media screen and (max-width: 520px) { .experience__header { flex-direction: column; align-items: flex-start; row-gap: 0.75rem; } .experience__verify-btn { align-self: flex-start; } }
+  @media screen and (min-width: 630px) { .experience__container { max-width: 600px; } }
+  @media screen and (min-width: 992px) { .experience__container { max-width: 800px; row-gap: 2rem; } .experience__card { padding: 2rem 2rem 2rem 1.75rem; } }
+`;

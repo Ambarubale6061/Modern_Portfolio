@@ -120,21 +120,39 @@
   margin: 0;
 }
 
-/* Verify Button Base Layout */
+/* Updated Verify Button Styles - Premium Slate & Blue Theme */
 .experience__verify-btn {
   display: inline-flex;
   align-items: center;
-  column-gap: 0.25rem;
+  column-gap: 0.35rem;
   font-size: var(--smaller-font-size);
   font-weight: var(--font-bold);
-  padding: 0.4rem 0.75rem;
+  background-color: #0f172a; /* Premium Slate-900 */
+  color: #fff;
+  padding: 0.45rem 0.9rem;
   border-radius: 5rem;
   box-sizing: border-box;
   text-decoration: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* Verify बटनवर माउस नेल्यावर (Hover Effect) */
+.experience__verify-btn:hover {
+  background-color: #2563eb; /* Modern Blue Accent */
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(37, 99, 235, 0.2);
 }
 
 .experience__verify-link-icon {
-  font-size: 0.7rem;
+  font-size: 0.75rem;
+  transition: transform 0.3s ease;
+}
+
+/* होव्हर केल्यावर लिंक आयकॉन थोडा बाहेर सरकेल */
+.experience__verify-btn:hover .experience__verify-link-icon {
+  transform: translate(1px, -1px);
 }
 
 /* Tech Stack layout */

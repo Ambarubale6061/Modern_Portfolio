@@ -172,7 +172,7 @@ const SkillCardAnimation = memo(function SkillCardAnimation({ skills, title }) {
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
-                rowGap: "0.55rem" /* गॅप वाढवला (0.35 वरून 0.55 केला) */,
+                rowGap: "0.55rem",
                 padding: "0.85rem 0.5rem",
                 width: "115px",
                 height: "115px",
@@ -202,7 +202,7 @@ const SkillCardAnimation = memo(function SkillCardAnimation({ skills, title }) {
                     color: isCenter
                       ? "var(--title-color)"
                       : "var(--text-color-light)",
-                    fontSize: "0.72rem" /* टेक्स्ट अजून थोडा बारीक केला */,
+                    fontSize: "0.72rem",
                     fontWeight: "500",
                     margin: 0,
                   }}
@@ -221,6 +221,9 @@ const SkillCardAnimation = memo(function SkillCardAnimation({ skills, title }) {
 export default function Skills() {
   return (
     <section className="skills section" id="skills">
+      {/* Dynamic CSS Styles Injection */}
+      <style dangerouslySetInnerHTML={{ __html: styles }} />
+
       <span className="section__subtitle">My Expertise</span>
       <h2 className="section__title">Skills & Technologies</h2>
 
@@ -236,3 +239,164 @@ export default function Skills() {
     </section>
   );
 }
+
+/*=============== INLINE COMPONENT STYLES ===============*/
+const styles = `
+  .skills__container {
+    row-gap: 2.5rem;
+    padding-top: 1rem;
+  }
+
+  .skills__content {
+    background-color: var(--container-color);
+    padding: 1.5rem 1rem;
+    border-radius: 1.25rem;
+    position: relative;
+    height: 290px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: background-color 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  .skills__title {
+    font-size: var(--normal-font-size);
+    font-weight: var(--font-medium);
+    color: var(--first-color);
+    text-align: center;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 30;
+  }
+
+  /* 3D Stage */
+  .skills__box {
+    position: relative;
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 800px;
+    transform-style: preserve-3d;
+  }
+
+  /* Individual rotating skill card */
+  .skills__data {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 0.55rem;
+    background-color: var(--skills-data-bg);
+    padding: 0.85rem 0.5rem;
+    border-radius: 0.6rem;
+    border: 1px solid transparent;
+    width: 115px;
+    height: 115px;
+    will-change: transform;
+    transform-style: preserve-3d;
+    transition: transform 850ms cubic-bezier(0.25, 1, 0.5, 1),
+                opacity 850ms cubic-bezier(0.25, 1, 0.5, 1),
+                filter 850ms cubic-bezier(0.25, 1, 0.5, 1),
+                background-color 0.4s ease;
+  }
+
+  /* Dark default */
+  :root {
+    --skills-data-bg: hsl(var(--second-hue), 48%, 8%);
+  }
+
+  /* Light override */
+  body.light-theme {
+    --skills-data-bg: #ffffff;
+  }
+
+  /* Lucide icon wrapper */
+  .skills__icon-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    transition: color 500ms ease;
+  }
+
+  .skills__info {
+    overflow: hidden;
+    text-align: center;
+    width: 100%;
+  }
+
+  .skills__name {
+    font-size: 0.72rem;
+    font-weight: var(--font-medium);
+    line-height: 1.2;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .skills__level {
+    font-size: var(--smaller-font-size);
+    color: var(--text-color-light);
+    display: block;
+  }
+
+  /* Background glow effect */
+  .skills__glow {
+    position: absolute;
+    inset: 0;
+    opacity: 0.06;
+    filter: blur(50px);
+    pointer-events: none;
+    transition: background 1000ms ease-in-out;
+  }
+
+  body.light-theme .skills__glow {
+    opacity: 0.1;
+  }
+
+  .light-theme .skills__content {
+    box-shadow: 0 2px 16px hsla(var(--second-hue), 48%, 8%, 0.1);
+  }
+
+  /*=============== SKILLS BREAKPOINTS ===============*/
+  @media screen and (max-width: 350px) {
+    .skills__data {
+      width: 100px;
+      height: 100px;
+      padding: 0.6rem 0.4rem;
+      row-gap: 0.4rem;
+    }
+    .skills__icon-wrap {
+      width: 30px;
+      height: 30px;
+    }
+    .skills__name {
+      font-size: 0.68rem;
+    }
+  }
+
+  @media screen and (min-width: 630px) {
+    .skills__container {
+      justify-content: center;
+    }
+    .skills__content {
+      padding: 2rem 2.5rem;
+      height: 310px;
+    }
+    .skills__title {
+      font-size: var(--h3-font-size);
+    }
+  }
+
+  @media screen and (min-width: 992px) {
+    .skills__container {
+      grid-template-columns: repeat(2, 440px);
+      column-gap: 2.5rem;
+    }
+  }
+`;

@@ -192,10 +192,13 @@ function ProjectCard({ project }) {
   );
 }
 
-/* ─── Section ─────────────────────────────────────────────────────── */
+/* ─── Section Export ─────────────────────────────────────────────────── */
 export default function Work() {
   return (
     <section className="work section" id="work">
+      {/* Injecting CSS Styles dynamically into the component context */}
+      <style dangerouslySetInnerHTML={{ __html: styles }} />
+
       <span className="section__subtitle">My Portfolio</span>
       <h2 className="section__title">Recent Works</h2>
 
@@ -208,3 +211,252 @@ export default function Work() {
     </section>
   );
 }
+
+/* ─── Consolidated Component Styles ───────────────────────────────── */
+const styles = `
+  /*=============== WORK ===============*/
+  .work__container {
+    padding-top: 1rem;
+  }
+
+  .work__filters {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .work__item {
+    cursor: pointer;
+    color: var(--title-color);
+    padding: 0.25rem 0.75rem;
+    font-weight: var(--font-medium);
+    border-radius: 0.5rem;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  .active-work {
+    background-color: var(--first-color);
+    color: var(--body-color);
+  }
+
+  /*========== Light theme overrides: Work ==========*/
+  .light-theme .active-work {
+    color: var(--title-color);
+  }
+
+  /*=============== PROJECT CARD ===============*/
+  .work__card {
+    background-color: var(--container-color);
+    border-radius: 1rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .work__card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px hsla(var(--second-hue), 48%, 8%, 0.25);
+  }
+
+  /* Image wrapper */
+  .work__img-wrap {
+    position: relative;
+    width: 100%;
+    height: 160px;
+    overflow: hidden;
+    background-color: var(--body-color);
+    flex-shrink: 0;
+  }
+
+  .work__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 0;
+    margin-bottom: 0;
+    transition: transform 0.5s ease;
+  }
+
+  .work__card:hover .work__img {
+    transform: scale(1.05);
+  }
+
+  /* Fallback when image fails */
+  .work__img-fallback {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .work__img-fallback-letter {
+    font-size: 3rem;
+    font-weight: var(--font-semibold);
+    opacity: 0.5;
+    font-family: var(--body-font);
+  }
+
+  /* Colored accent bar at bottom of image */
+  .work__accent-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+  }
+
+  /* Card body */
+  .work__body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 1rem;
+    gap: 0.5rem;
+  }
+
+  .work__tagline {
+    font-size: var(--tiny-font-size);
+    font-weight: var(--font-semibold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-color-light);
+  }
+
+  .work__title {
+    font-size: var(--normal-font-size);
+    font-weight: var(--font-semibold);
+    color: var(--title-color);
+    margin-bottom: 0;
+    transition: color 0.2s;
+  }
+
+  .work__card:hover .work__title {
+    color: var(--first-color);
+  }
+
+  .work__desc {
+    font-size: var(--smaller-font-size);
+    color: var(--text-color);
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    flex: 1;
+  }
+
+  /* Tech badges */
+  .work__tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.375rem;
+    margin-top: 0.25rem;
+  }
+
+  .work__badge {
+    font-size: var(--tiny-font-size);
+    font-weight: var(--font-medium);
+    padding: 0.2rem 0.55rem;
+    border-radius: 0.35rem;
+    background-color: var(--body-color);
+    color: var(--text-color);
+    border: 1px solid hsla(var(--second-hue), 15%, 50%, 0.15);
+  }
+
+  /* Divider */
+  .work__divider {
+    height: 1px;
+    background-color: hsla(var(--second-hue), 15%, 50%, 0.1);
+    margin: 0.25rem 0;
+  }
+
+  /* Action links row */
+  .work__actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .work__action-link {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: var(--smaller-font-size);
+    font-weight: var(--font-semibold);
+    color: var(--text-color);
+    transition: color 0.2s;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .work__action-link:hover {
+    color: var(--title-color);
+  }
+
+  .work__action-link--primary:hover {
+    color: var(--first-color);
+  }
+
+  .work__action-icon {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+  }
+
+  /*========== Light theme overrides: Work card ==========*/
+  .light-theme .work__card {
+    box-shadow: 0 2px 16px hsla(var(--second-hue), 48%, 8%, 0.08);
+  }
+
+  .light-theme .work__badge {
+    background-color: #f1f5f9;
+  }
+
+  /*=============== WORK BREAKPOINTS ===============*/
+  @media screen and (max-width: 320px) {
+    .work__item {
+      font-size: var(--small-font-size);
+    }
+    .work__filters {
+      column-gap: 0.25rem;
+    }
+  }
+
+  @media screen and (min-width: 435px) {
+    .work__container {
+      justify-content: center;
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media screen and (min-width: 630px) {
+    .work__container {
+      justify-content: center;
+      grid-template-columns: repeat(2, 1fr);
+      max-width: 640px;
+      margin-inline: auto;
+    }
+    .work__img-wrap {
+      height: 180px;
+    }
+  }
+
+  @media screen and (min-width: 992px) {
+    .work__container {
+      grid-template-columns: repeat(3, 1fr);
+      max-width: 968px;
+      gap: 1.5rem;
+    }
+    .work__body {
+      padding: 1.25rem;
+    }
+    .work__img-wrap {
+      height: 190px;
+    }
+  }
+`;
