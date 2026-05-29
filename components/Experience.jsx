@@ -16,12 +16,15 @@ const experienceStyles = `
   border-radius: 1.25rem;
   padding: 1.5rem;
   border-left: 3px solid var(--first-color);
-  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1),
+              box-shadow 0.35s ease;
   position: relative;
+  overflow: hidden;
 }
 
 .experience__card:hover {
   transform: translateY(-6px);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
 }
 
 .experience__header {
@@ -114,6 +117,7 @@ const experienceStyles = `
   color: var(--first-color);
   font-size: 0.8rem;
   margin-top: 0.15rem;
+  flex-shrink: 0;
 }
 
 .experience__description {
@@ -155,69 +159,216 @@ const experienceStyles = `
   transform: translate(1px, -1px);
 }
 
-.experience__tech-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
+/*=============== TECH STACK — IMAGE BASED ===============*/
+.experience__tech-section {
   padding-top: 1rem;
   border-top: 1px solid hsla(var(--first-hue), var(--sat), var(--lig), 0.1);
 }
 
+.experience__tech-label {
+  font-size: var(--tiny-font-size);
+  font-weight: var(--font-semibold);
+  color: var(--text-color-light);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.65rem;
+  display: block;
+}
+
+.experience__tech-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
 .experience__tech-badge {
   position: relative;
-  width: 2.3rem;
-  height: 2.3rem;
-  background-color: var(--body-color);
-  border: 1px solid hsla(var(--first-hue), var(--sat), var(--lig), 0.15);
-  border-radius: 50%;
   display: flex;
   align-items: center;
-  justify-content: center;
-  transition: transform 0.3s;
+  gap: 0.4rem;
+  background-color: var(--body-color);
+  border: 1px solid hsla(var(--first-hue), var(--sat), var(--lig), 0.15);
+  border-radius: 2rem;
+  padding: 0.28rem 0.65rem 0.28rem 0.4rem;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  cursor: default;
 }
 
 .experience__tech-badge:hover {
-  transform: scale(1.15);
+  transform: translateY(-2px) scale(1.04);
 }
 
-.experience__tech-icon {
-  font-size: 1.35rem;
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
+.experience__tech-img {
+  width: 1.2rem;
+  height: 1.2rem;
+  object-fit: contain;
+  flex-shrink: 0;
+  filter: drop-shadow(0 1px 2px rgba(0,0,0,0.2));
 }
 
-.experience__tech-tooltip {
-  position: absolute;
-  bottom: 125%;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: var(--title-color);
-  color: var(--body-color);
-  font-size: 0.65rem;
+/* invert next.svg and git.svg for dark mode legibility */
+.experience__tech-img--invert {
+  filter: invert(1) drop-shadow(0 1px 2px rgba(0,0,0,0.2));
+}
+
+.light-theme .experience__tech-img--invert {
+  filter: invert(0) drop-shadow(0 1px 2px rgba(0,0,0,0.2));
+}
+
+.experience__tech-name {
+  font-size: 0.68rem;
   font-weight: var(--font-medium);
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.25rem;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
+  color: var(--text-color);
   white-space: nowrap;
-  z-index: 10;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-}
-
-.experience__tech-badge:hover .experience__tech-tooltip {
-  opacity: 1;
+  line-height: 1;
 }
 
 /*=============== EXPERIENCE BREAKPOINTS ===============*/
-@media screen and (max-width: 520px) {
-  .experience__header {
-    flex-direction: column;
-    align-items: flex-start;
-    row-gap: 0.75rem;
+
+/* Very small phones */
+@media screen and (max-width: 360px) {
+  .experience__container {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
+  .experience__card {
+    padding: 1rem 0.9rem 1rem 0.85rem;
+    border-radius: 1rem;
+  }
+
+  .experience__img-box {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
+  .experience__title {
+    font-size: var(--small-font-size);
+  }
+
+  .experience__company {
+    font-size: var(--tiny-font-size);
   }
 
   .experience__verify-btn {
-    align-self: flex-start;
+    font-size: 0.6rem;
+    padding: 0.35rem 0.65rem;
+  }
+
+  .experience__description {
+    font-size: var(--smaller-font-size);
+  }
+
+  .experience__tech-badge {
+    padding: 0.22rem 0.5rem 0.22rem 0.32rem;
+    gap: 0.3rem;
+  }
+
+  .experience__tech-img {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .experience__tech-name {
+    font-size: 0.6rem;
+  }
+}
+
+/* Standard mobile */
+@media screen and (max-width: 520px) {
+  .experience__container {
+    row-gap: 1.1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
+  .experience__card {
+    padding: 1.1rem 1rem 1.1rem 0.95rem;
+    border-radius: 1rem;
+  }
+
+  .experience__header {
+    flex-direction: row;
+    align-items: center;
+    column-gap: 0.75rem;
+    flex-wrap: wrap;
+    row-gap: 0.5rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .experience__img-box {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+
+  .experience__info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .experience__title {
+    font-size: var(--small-font-size);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .experience__company {
+    font-size: var(--tiny-font-size);
+  }
+
+  .experience__verify-btn {
+    font-size: 0.62rem;
+    padding: 0.38rem 0.7rem;
+    column-gap: 0.25rem;
+  }
+
+  .experience__meta {
+    gap: 0.4rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .experience__period,
+  .experience__location {
+    font-size: 0.65rem;
+    padding: 0.18rem 0.55rem;
+  }
+
+  .experience__bullets {
+    row-gap: 0.55rem;
+    margin-bottom: 1rem;
+  }
+
+  .experience__description {
+    font-size: var(--smaller-font-size);
+    line-height: 1.55;
+  }
+
+  .experience__tech-section {
+    padding-top: 0.75rem;
+  }
+
+  .experience__tech-label {
+    font-size: 0.6rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .experience__tech-wrapper {
+    gap: 0.4rem;
+  }
+
+  .experience__tech-badge {
+    padding: 0.24rem 0.55rem 0.24rem 0.35rem;
+    gap: 0.3rem;
+  }
+
+  .experience__tech-img {
+    width: 1.05rem;
+    height: 1.05rem;
+  }
+
+  .experience__tech-name {
+    font-size: 0.63rem;
   }
 }
 
@@ -235,6 +386,15 @@ const experienceStyles = `
 
   .experience__card {
     padding: 2rem 2rem 2rem 1.75rem;
+  }
+
+  .experience__tech-img {
+    width: 1.35rem;
+    height: 1.35rem;
+  }
+
+  .experience__tech-name {
+    font-size: 0.72rem;
   }
 }
 `;
@@ -255,17 +415,20 @@ const experienceData = [
       "Gained hands-on experience in full-stack development, API integration, and real-world problem solving, delivering high-quality features in a collaborative environment.",
     ],
     techStack: [
-      { name: "React", icon: "bx bxl-react", color: "#61DAFB" },
-      { name: "Node.js", icon: "bx bxl-nodejs", color: "#339933" },
-      { name: "MongoDB", icon: "bx bxl-mongodb", color: "#47A248" },
-      { name: "Tailwind", icon: "bx bxl-tailwind-css", color: "#06B6D4" },
-      { name: "Firebase", icon: "bx bxl-firebase", color: "#FFCA28" },
-      { name: "Java", icon: "bx bxl-java", color: "#007396" },
-      { name: "Spring Boot", icon: "bx bx-server", color: "#6DB33F" },
-      { name: "Express", icon: "bx bx-code-block", color: "#ffffff" },
-      { name: "JavaScript", icon: "bx bxl-javascript", color: "#F7DF1E" },
-      { name: "Supabase", icon: "bx bx-data", color: "#3ECF8E" },
-      { name: "Next.js", icon: "bx bxl-visual-studio", color: "#ffffff" },
+      { id: 1, name: "React", img: "/React.png" },
+      { id: 2, name: "Node.js", img: "/Node.js.png" },
+      { id: 3, name: "MongoDB", img: "/MongoDB.png" },
+      { id: 4, name: "Tailwind", img: "/Tailwind CSS.png" },
+      { id: 5, name: "Firebase", img: "/Firebase.png" },
+      { id: 6, name: "Java", img: "/Java.png" },
+      { id: 7, name: "Spring Boot", img: "/Spring.png" },
+      { id: 8, name: "Express", img: "/ex.png" },
+      { id: 9, name: "JavaScript", img: "/JavaScript.png" },
+      { id: 10, name: "TypeScript", img: "/ts.svg", invert: true },
+      { id: 11, name: "Git", img: "/git.svg", invert: true },
+      { id: 14, name: "Supabase", img: "/icons8-supabase-48.png" },
+      { id: 15, name: "Docker", img: "/dock.svg" },
+      { id: 16, name: "Next.js", img: "/next.svg", invert: true },
     ],
   },
 ];
@@ -340,18 +503,22 @@ export default function Experience() {
                 ))}
               </ul>
 
-              <div className="experience__tech-wrapper">
-                {item.techStack.map((tech, tIdx) => (
-                  <div key={tIdx} className="experience__tech-badge">
-                    <i
-                      className={`${tech.icon} experience__tech-icon`}
-                      style={{ color: tech.color }}
-                    ></i>
-                    <span className="experience__tech-tooltip">
-                      {tech.name}
-                    </span>
-                  </div>
-                ))}
+              {/* Tech stack — image based */}
+              <div className="experience__tech-section">
+                <span className="experience__tech-label">Tech Stack</span>
+                <div className="experience__tech-wrapper">
+                  {item.techStack.map((tech) => (
+                    <div key={tech.id} className="experience__tech-badge">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={tech.img}
+                        alt={tech.name}
+                        className={`experience__tech-img${tech.invert ? " experience__tech-img--invert" : ""}`}
+                      />
+                      <span className="experience__tech-name">{tech.name}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           ))}

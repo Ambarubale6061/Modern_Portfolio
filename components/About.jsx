@@ -8,9 +8,16 @@ const aboutStyles = `
 }
 
 .about__img {
-  width: 220px;
+  width: 280px; /* Increased size */
   border-radius: 1.5rem;
   justify-self: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Premium shadow */
+  border: 4px solid var(--container-color); /* Premium border effect */
+  transition: transform 0.3s ease;
+}
+
+.about__img:hover {
+  transform: scale(1.02); /* Subtle premium interaction */
 }
 
 .about__data {
@@ -86,7 +93,7 @@ const aboutStyles = `
   }
 
   .about__img {
-    width: 350px;
+    width: 400px; /* Increased size for desktop */
   }
 
   .about__data {

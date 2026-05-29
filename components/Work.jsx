@@ -251,7 +251,7 @@ const projects = [
     title: "AgenticAI Studio",
     tagline: "Autonomous agent orchestration",
     description:
-      "Architected a multi-agent AI coding platform (Planner, Coder, Debugger) that automates end-to-end code generation, execution, and debugging. Features real-time streaming (SSE) with <2s latency, agent memory, version control, and a hybrid execution engine within a browser-based IDE.",
+      "Architected a multi-agent AI coding platform for automated generation and debugging. Features real-time streaming and a hybrid execution engine.",
     tech: ["React", "TypeScript", "Node.js", "Express", "MongoDB"],
     image: "/IDE.png",
     link: "https://agentic-ai-studio-chi.vercel.app/",
@@ -264,7 +264,7 @@ const projects = [
     title: "FutureCart",
     tagline: "AI-powered commerce",
     description:
-      "Built a scalable full-stack eCommerce platform supporting 50+ products with filtering, cart, wishlist, and secure checkout. Features a real-time product management system via Supabase Realtime, reducing admin update delays by 60%, with role-based architecture and chatbot integration.",
+      "Built a scalable eCommerce platform with real-time product management via Supabase. Includes role-based architecture and integrated chatbot.",
     tech: ["React", "Tailwind CSS", "TypeScript", "Supabase"],
     image: "/home.png",
     link: "https://futurecart-e-commerce.vercel.app/",
@@ -278,7 +278,7 @@ const projects = [
     title: "Connectly",
     tagline: "Real-time collaboration",
     description:
-      "Developed a scalable social media platform supporting posts, reels, stories, and real-time interactions. Delivers low-latency (<1s) messaging, notifications, and presence via Supabase Realtime, with peer-to-peer voice and video calling via WebRTC and secure Postgres/RLS backend.",
+      "Developed a social platform for real-time messaging and notifications. Features peer-to-peer WebRTC voice and video calling.",
     tech: ["React", "TypeScript", "Supabase", "WebRTC"],
     image: "/hom.png",
     link: "https://connectly-tau.vercel.app/",
@@ -291,7 +291,7 @@ const projects = [
     title: "Task Manager",
     tagline: "Smart daily task organizer",
     description:
-      "Built an efficient task management application to organize, track, and manage daily activities with a clean and responsive user interface for improved productivity.",
+      "Efficient task management app to organize and track daily activities. Features a clean, responsive interface for productivity.",
     tech: ["Next.js", "React", "Tailwind CSS", "Node.js"],
     image: "/taskapp.png",
     link: "https://task-app-nine-lovat.vercel.app/",
@@ -304,7 +304,7 @@ const projects = [
     title: "QuickCart",
     tagline: "Modern e-commerce experience",
     description:
-      "Developed a modern e-commerce web application with responsive UI, product listings, cart functionality, and secure backend integration using MongoDB and Next.js.",
+      "Modern e-commerce web application with responsive UI and product listings. Includes secure backend integration using MongoDB.",
     tech: ["Next.js", "Node.js", "Tailwind CSS", "MongoDB"],
     image: "/quick.png",
     link: "https://quickcart-ten-opal.vercel.app/",
@@ -317,7 +317,7 @@ const projects = [
     title: "Weather App",
     tagline: "Live weather insights",
     description:
-      "Designed a real-time weather dashboard that displays temperature, humidity, and weather forecasts for different cities with a modern and responsive UI.",
+      "Real-time weather dashboard displaying temperature and forecasts. Features a modern, responsive UI for multiple cities.",
     tech: ["Next.js", "Tailwind CSS", "TypeScript", "Vite"],
     image: "/weather.png",
     link: "https://weather-dashboard-six-steel.vercel.app/",

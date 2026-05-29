@@ -26,13 +26,12 @@ const headerStyles = `
 }
 
 /*
-  Logo: 1.1rem — noticeably larger than the original inherited ~0.94rem
-  but safely fits inside the fixed 3.5rem nav height without pushing layout.
+  Logo: 1.4rem — साईज वाढवली आहे
   font-weight bumped to semibold for a stronger wordmark feel.
 */
 .nav__logo {
   color: var(--first-color);
-  font-size: 1.1rem;
+  font-size: 1.4rem; 
   font-weight: var(--font-semibold);
   letter-spacing: 0.01em;
   line-height: 1;
@@ -144,7 +143,7 @@ const headerStyles = `
   }
 
   .nav__logo {
-    font-size: 1.2rem;
+    font-size: 1.5rem; /* स्क्रीन मोठी असताना थोडी अजून वाढवली */
   }
 }
 `;

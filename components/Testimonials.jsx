@@ -156,14 +156,48 @@ const testimonialsStyles = `
 }
 
 /*=============== TESTIMONIAL BREAKPOINTS ===============*/
+
+/* Very small phones */
+@media screen and (max-width: 360px) {
+  .testimonial__container {
+    padding-bottom: 5rem !important;
+    margin-left: 1rem !important;
+    margin-right: 1rem !important;
+    width: auto !important;
+  }
+
+  .testimonial__card {
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .testimonial__quote {
+    font-size: 2.75rem;
+  }
+
+  .testimonial__description {
+    font-size: var(--smaller-font-size);
+  }
+
+  .testimonial__container .swiper-pagination {
+    bottom: 0.5rem !important;
+  }
+}
+
+/* Standard mobile */
 @media screen and (max-width: 576px) {
   .testimonial__container {
     padding-bottom: 5rem !important;
+    margin-left: 1rem !important;
+    margin-right: 1rem !important;
+    width: auto !important;
   }
+
   .testimonial__card {
     padding: 1.5rem;
     margin-bottom: 1.5rem;
   }
+
   .testimonial__container .swiper-pagination {
     bottom: 0.5rem !important;
   }
@@ -172,7 +206,8 @@ const testimonialsStyles = `
 @media screen and (min-width: 630px) {
   .testimonial__container {
     width: 600px;
-    margin: auto;
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
 }
 
@@ -241,6 +276,7 @@ export default function Testimonials() {
           className="testimonial__container container"
           modules={[Pagination, Autoplay]}
           spaceBetween={24}
+          slidesPerView={1}
           loop={true}
           grabCursor={true}
           autoHeight={false}
@@ -251,7 +287,7 @@ export default function Testimonials() {
           }}
           pagination={{ clickable: true, el: ".swiper-pagination" }}
           breakpoints={{
-            576: { slidesPerView: 1 },
+            576: { slidesPerView: 1, spaceBetween: 24 },
             768: { slidesPerView: 2, spaceBetween: 32 },
             992: { slidesPerView: 2, spaceBetween: 48 },
           }}
