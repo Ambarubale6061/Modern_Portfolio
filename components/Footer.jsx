@@ -6,6 +6,7 @@ const footerStyles = `
 /*=============== FOOTER (PERMANENT RICH DEEP DARK) ===============*/
 .footer {
   background-color: #060913 !important;
+  color: #94a3b8 !important;          /* anchors all inherited text */
   border-top: 1px solid rgba(255, 255, 255, 0.03);
   transition: background-color 0.4s;
 }
@@ -116,6 +117,11 @@ const footerStyles = `
   box-shadow: 0 10px 15px -3px rgba(5, 150, 105, 0.3);
 }
 
+/* Prevent li items from inheriting light-theme dark body text */
+.footer__item {
+  color: #f1f5f9 !important;
+}
+
 .footer__copy {
   display: block;
   margin-top: 4.5rem;
@@ -126,14 +132,19 @@ const footerStyles = `
   letter-spacing: 1px;
 }
 
-/*========== LIGHT THEME OVERRIDES ==========*/
+/*========== LIGHT THEME OVERRIDES — full lock ==========*/
 .light-theme .footer {
   background-color: #060913 !important;
+  color: #94a3b8 !important;
   border-top: 1px solid rgba(255, 255, 255, 0.03);
 }
 
 .light-theme .footer__title,
 .light-theme .footer__link {
+  color: #f1f5f9 !important;
+}
+
+.light-theme .footer__item {
   color: #f1f5f9 !important;
 }
 
@@ -148,6 +159,7 @@ const footerStyles = `
 .light-theme .footer__social-link {
   background-color: #0e1424 !important;
   color: #94a3b8 !important;
+  border-color: rgba(255, 255, 255, 0.05) !important;
 }
 
 /*=============== FOOTER BREAKPOINTS ===============*/

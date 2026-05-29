@@ -11,6 +11,7 @@ const headerStyles = `
   width: 100%;
   background-color: var(--body-color);
   z-index: var(--z-fixed);
+  overflow: hidden;
   transition:
     background-color 0.4s ease,
     box-shadow 0.4s ease;
@@ -21,15 +22,40 @@ const headerStyles = `
   display: flex;
   justify-content: space-between;
   align-items: center;
+  overflow: hidden;
 }
 
+/*
+  Logo: 1.1rem — noticeably larger than the original inherited ~0.94rem
+  but safely fits inside the fixed 3.5rem nav height without pushing layout.
+  font-weight bumped to semibold for a stronger wordmark feel.
+*/
 .nav__logo {
   color: var(--first-color);
-  font-weight: var(--font-medium);
+  font-size: 1.1rem;
+  font-weight: var(--font-semibold);
+  letter-spacing: 0.01em;
+  line-height: 1;
   transition: color 0.4s ease;
 }
 
+/* "Am" — white in dark theme */
+.nav__logo-am {
+  color: #ffffff;
+  transition: color 0.4s ease;
+}
+
+/* "Am" — black in light theme */
+.light-theme .nav__logo-am {
+  color: #0f172a;
+}
+
+/* Hover: whole logo shifts to alt-blue */
 .nav__logo:hover {
+  color: var(--first-color-alt);
+}
+
+.nav__logo:hover .nav__logo-am {
   color: var(--first-color-alt);
 }
 
@@ -114,6 +140,11 @@ const headerStyles = `
 @media screen and (min-width: 992px) {
   .nav {
     height: calc(var(--header-height) + 1rem);
+    overflow: hidden;
+  }
+
+  .nav__logo {
+    font-size: 1.2rem;
   }
 }
 `;
@@ -198,7 +229,7 @@ export default function Header() {
       <header className="header" id="header">
         <nav className="nav container">
           <a href="#" className="nav__logo">
-            Ambar
+            <span className="nav__logo-am">Am</span>bar
           </a>
 
           <div className="nav__menu">

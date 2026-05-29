@@ -38,7 +38,7 @@ const homeStyles = `
 }
 
 .home__img {
-  width: 220px; 
+  width: 220px;
 }
 
 .home__handle {
@@ -67,7 +67,10 @@ const homeStyles = `
 
 .home__button .button {
   border: 2px solid transparent;
-  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    border-color 0.3s ease;
 }
 
 .home__button .button:not(.button--ghost):hover {
@@ -104,16 +107,37 @@ const homeStyles = `
   width: max-content;
   background-color: var(--container-color);
   color: var(--first-color);
-  padding: 0.25rem;
+  padding: 0.35rem;
   border-radius: 0.5rem;
   display: flex;
-  font-size: 1rem;
-  transition: background-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
+  font-size: 1.15rem;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
-.home__social-link:hover {
-  background-color: var(--first-color);
+/* ── Brand-specific hover effects ── */
+.home__social-link--linkedin:hover {
+  background-color: #2563eb;
   color: #ffffff;
+  transform: translateY(-4px) scale(1.1);
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+}
+
+.home__social-link--github:hover {
+  background-color: #000000;
+  color: #ffffff;
+  transform: translateY(-4px) scale(1.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+}
+
+.home__social-link--twitter:hover {
+  background-color: #0ea5e9;
+  color: #ffffff;
+  transform: translateY(-4px) scale(1.1);
+  box-shadow: 0 8px 20px rgba(14, 165, 233, 0.35);
 }
 
 .home__social::after {
@@ -158,17 +182,42 @@ const homeStyles = `
 
 /*=============== HOME BREAKPOINTS ===============*/
 @media screen and (max-width: 320px) {
-  .home__button { flex-direction: column; }
-  .home__handle { width: 170px; height: 280px; }
-  .home__img { width: 220px; } /* मोबाईलसाठी इमेजची साईज वाढवली */
+  .home__button {
+    flex-direction: column;
+  }
+
+  .home__handle {
+    width: 150px;
+    height: 253px;
+  }
+
+  .home__img {
+    width: 130px;
+  }
 }
 
 @media screen and (min-width: 992px) {
-  .home__handle { width: 290px; height: 400px; }
-  .home__img { width: 380px; } 
-  .home__social-link { padding: 0.4rem; font-size: 1.25rem; }
-  .home__social::after { transform: rotate(90deg) translate(16px, -1px); }
-  .home__scroll-icon { font-size: 2rem; }
+  .home__handle {
+    width: 290px;
+    height: 400px;
+  }
+
+  .home__img {
+    width: 380px;
+  }
+
+  .home__social-link {
+    padding: 0.45rem;
+    font-size: 1.4rem;
+  }
+
+  .home__social::after {
+    transform: rotate(90deg) translate(16px, -1px);
+  }
+
+  .home__scroll-icon {
+    font-size: 2rem;
+  }
 }
 `;
 
@@ -233,6 +282,7 @@ export default function Home() {
               >
                 Download CV
               </a>
+
               <a
                 href="#about"
                 className="button"
@@ -242,8 +292,8 @@ export default function Home() {
                   backgroundColor: isHovered
                     ? "transparent"
                     : "var(--first-color)",
-                  color: isHovered ? "var(--text-color)" : "#fff",
-                  borderColor: isHovered ? "var(--text-color)" : "transparent",
+                  color: isHovered ? "var(--first-color)" : "#fff",
+                  borderColor: isHovered ? "var(--first-color)" : "transparent",
                   borderStyle: "solid",
                   borderWidth: "2px",
                   transition: "all 0.3s ease",
@@ -255,33 +305,34 @@ export default function Home() {
           </div>
 
           <div className="home__handle">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/ambarh.png" alt="Profile" className="home__img" />
           </div>
 
           <div className="home__social">
             <a
-              href="#"
+              href="https://www.linkedin.com/in/ambar-ubale-137214230"
               target="_blank"
               rel="noreferrer"
-              className="home__social-link"
+              className="home__social-link home__social-link--linkedin"
             >
               <i className="bx bxl-linkedin"></i>
             </a>
             <a
-              href="#"
+              href="https://github.com/Ambarubale6061"
               target="_blank"
               rel="noreferrer"
-              className="home__social-link"
+              className="home__social-link home__social-link--github"
             >
               <i className="bx bxl-github"></i>
             </a>
             <a
-              href="#"
+              href="https://x.com/UbaleAmbar"
               target="_blank"
               rel="noreferrer"
-              className="home__social-link"
+              className="home__social-link home__social-link--twitter"
             >
-              <i className="bx bxl-dribbble"></i>
+              <i className="bx bxl-twitter"></i>
             </a>
           </div>
 
