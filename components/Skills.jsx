@@ -7,7 +7,7 @@ import {
   Sparkles,
   Server,
   Cpu,
-  Database as DbIcon,
+  Database,
   Zap,
   Braces,
   Boxes,
@@ -31,6 +31,10 @@ import {
   SearchCode,
   PenTool,
   Code,
+  Coffee,
+  Video,
+  Github, // Lucide exports it with this casing
+  FlaskConical, // Used instead of the non-existent TestTube
 } from "lucide-react";
 
 const skillsStyles = `
@@ -226,7 +230,7 @@ const skillData = {
     { name: "Supabase", Icon: Zap, color: "#3ecf8e" },
     { name: "Firebase", Icon: Cloud, color: "#f59e0b" },
     { name: "MongoDB", Icon: HardDrive, color: "#16a34a" },
-    { name: "PostgreSQL", Icon: DbIcon, color: "#6366f1" },
+    { name: "PostgreSQL", Icon: Database, color: "#6366f1" },
     { name: "Redis", Icon: Zap, color: "#ef4444" },
     { name: "Vector DB", Icon: Hash, color: "#8b5cf6" },
     { name: "Prisma", Icon: Braces, color: "#a3a3a3" },
@@ -234,7 +238,7 @@ const skillData = {
   ],
   workflow: [
     { name: "Git", Icon: GitCommit, color: "#f05032" },
-    { name: "GitHub", Icon: Github, color: "#181717" },
+    { name: "GitHub", Icon: Github, color: "#181717" }, // Matched to 'Github' import
     { name: "Docker", Icon: Boxes, color: "#2496ed" },
     { name: "AWS", Icon: Cloud, color: "#f97316" },
     { name: "Vercel", Icon: Zap, color: "#a3a3a3" },
@@ -243,7 +247,7 @@ const skillData = {
     { name: "VS Code", Icon: Laptop, color: "#007acc" },
     { name: "Postman", Icon: MessageSquare, color: "#ef6c37" },
     { name: "Security", Icon: ShieldCheck, color: "#10b981" },
-    { name: "Vitest", Icon: TestTube, color: "#8b5cf6" },
+    { name: "Vitest", Icon: FlaskConical, color: "#8b5cf6" }, // Swapped to real Lucide icon
     { name: "Supabase Edge", Icon: Zap, color: "#3ecf8e" },
   ],
 };
@@ -316,6 +320,9 @@ const SkillCardAnimation = memo(function SkillCardAnimation({ skills, title }) {
             opacity = 0.35;
           }
 
+          // Fallback check to prevent rendering undefined components if an icon string is broken
+          const IconComponent = skill.Icon || Code;
+
           return (
             <div
               key={skill.name}
@@ -351,7 +358,7 @@ const SkillCardAnimation = memo(function SkillCardAnimation({ skills, title }) {
                   height: "36px",
                 }}
               >
-                <skill.Icon size={35} strokeWidth={1.4} />
+                <IconComponent size={35} strokeWidth={1.4} />
               </div>
 
               <div
