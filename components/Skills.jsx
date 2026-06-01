@@ -33,8 +33,7 @@ import {
   Code,
   Coffee,
   Video,
-  Github, // Lucide exports it with this casing
-  FlaskConical, // Used instead of the non-existent TestTube
+  FlaskConical,
 } from "lucide-react";
 
 const skillsStyles = `
@@ -238,7 +237,7 @@ const skillData = {
   ],
   workflow: [
     { name: "Git", Icon: GitCommit, color: "#f05032" },
-    { name: "GitHub", Icon: Github, color: "#181717" }, // Matched to 'Github' import
+    { name: "GitHub", Icon: GitBranch, color: "#6e5494" },
     { name: "Docker", Icon: Boxes, color: "#2496ed" },
     { name: "AWS", Icon: Cloud, color: "#f97316" },
     { name: "Vercel", Icon: Zap, color: "#a3a3a3" },
@@ -247,7 +246,7 @@ const skillData = {
     { name: "VS Code", Icon: Laptop, color: "#007acc" },
     { name: "Postman", Icon: MessageSquare, color: "#ef6c37" },
     { name: "Security", Icon: ShieldCheck, color: "#10b981" },
-    { name: "Vitest", Icon: FlaskConical, color: "#8b5cf6" }, // Swapped to real Lucide icon
+    { name: "Vitest", Icon: FlaskConical, color: "#8b5cf6" },
     { name: "Supabase Edge", Icon: Zap, color: "#3ecf8e" },
   ],
 };
@@ -320,7 +319,6 @@ const SkillCardAnimation = memo(function SkillCardAnimation({ skills, title }) {
             opacity = 0.35;
           }
 
-          // Fallback check to prevent rendering undefined components if an icon string is broken
           const IconComponent = skill.Icon || Code;
 
           return (
