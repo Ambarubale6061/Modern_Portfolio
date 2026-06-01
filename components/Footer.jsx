@@ -6,7 +6,7 @@ const footerStyles = `
 /*=============== FOOTER (PERMANENT RICH DEEP DARK) ===============*/
 .footer {
   background-color: #060913 !important;
-  color: #94a3b8 !important;          /* anchors all inherited text */
+  color: #94a3b8 !important;
   border-top: 1px solid rgba(255, 255, 255, 0.03);
   transition: background-color 0.4s;
 }
@@ -160,6 +160,52 @@ const footerStyles = `
   background-color: #0e1424 !important;
   color: #94a3b8 !important;
   border-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Light theme nav link hover — matches dark theme */
+.light-theme .footer__link:hover {
+  color: #2563eb !important;
+}
+
+/* Light theme social icon hovers — identical brand colors as dark theme */
+.light-theme .footer__social-github:hover {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+  border-color: #000000 !important;
+  transform: translateY(-4px) scale(1.1);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+}
+
+.light-theme .footer__social-linkedin:hover {
+  background-color: #2563eb !important;
+  color: #ffffff !important;
+  border-color: #2563eb !important;
+  transform: translateY(-4px) scale(1.1);
+  box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.3);
+}
+
+.light-theme .footer__social-twitter:hover {
+  background-color: #0ea5e9 !important;
+  color: #ffffff !important;
+  border-color: #0ea5e9 !important;
+  transform: translateY(-4px) scale(1.1);
+  box-shadow: 0 10px 15px -3px rgba(14, 165, 233, 0.3);
+}
+
+.light-theme .footer__social-instagram:hover {
+  background-color: #db2777 !important;
+  color: #ffffff !important;
+  border-color: #db2777 !important;
+  transform: translateY(-4px) scale(1.1);
+  box-shadow: 0 10px 15px -3px rgba(219, 39, 119, 0.3);
+}
+
+.light-theme .footer__social-whatsapp:hover {
+  background-color: #059669 !important;
+  color: #ffffff !important;
+  border-color: #059669 !important;
+  transform: translateY(-4px) scale(1.1);
+  box-shadow: 0 10px 15px -3px rgba(5, 150, 105, 0.3);
 }
 
 /*=============== FOOTER BREAKPOINTS ===============*/

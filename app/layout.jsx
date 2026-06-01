@@ -1,4 +1,5 @@
 import "../styles/globals.css";
+import CursorTrail from "../components/CursorTrail";
 
 export const metadata = {
   title: "Ambar's Portfolio",
@@ -7,7 +8,7 @@ export const metadata = {
     icon: [
       {
         url: "/logo1.png",
-        sizes: "32x32", // हे ब्राउझरला इमेजची साईज सांगते
+        sizes: "32x32",
         type: "image/png",
       },
     ],
@@ -24,7 +25,10 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <CursorTrail />
+        {children}
+      </body>
     </html>
   );
 }
