@@ -58,10 +58,31 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+
+  /* ── FIX: Remove mobile tap highlight on ALL elements ── */
+  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+/* ── FIX: Remove default focus outline & touch callout globally ── */
+*:focus {
+  outline: none;
+}
+
+*:focus-visible {
+  /* 
+    Keep a subtle custom outline only for keyboard navigation
+    (accessibility best practice — does NOT show on touch/click).
+    Remove this block entirely if you want zero outlines everywhere.
+  */
+  outline: 2px solid var(--first-color);
+  outline-offset: 2px;
 }
 
 html {
   scroll-behavior: smooth;
+  /* ── FIX: Prevent text size adjustment on orientation change (mobile) ── */
+  -webkit-text-size-adjust: 100%;
 }
 
 body,
@@ -93,17 +114,37 @@ ul {
 
 a {
   text-decoration: none;
+  /* ── FIX: No tap highlight on links ── */
+  -webkit-tap-highlight-color: transparent;
 }
 
 button {
   cursor: pointer;
   border: none;
   outline: none;
+  /* ── FIX: No tap highlight on buttons ── */
+  -webkit-tap-highlight-color: transparent;
+  /* ── FIX: Prevent long-press callout on iOS ── */
+  -webkit-touch-callout: none;
 }
 
 img {
   max-width: 100%;
   height: auto;
+  /* ── FIX: Prevent long-press image save menu on iOS ── */
+  -webkit-touch-callout: none;
+  pointer-events: none;
+}
+
+/* ── FIX: Remove blue box on tapped divs/sections acting as buttons ── */
+div,
+section,
+header,
+footer,
+nav,
+span,
+li {
+  -webkit-tap-highlight-color: transparent;
 }
 
 /*=============== THEME TOGGLE ===============*/
@@ -111,6 +152,8 @@ img {
   font-size: 1.25rem;
   cursor: pointer;
   transition: color 0.3s;
+  /* ── FIX: No tap highlight on theme toggle icon ── */
+  -webkit-tap-highlight-color: transparent;
 }
 
 .change-theme:hover {
@@ -204,6 +247,11 @@ body.light-theme {
     background-color 0.4s ease,
     color 0.4s ease,
     border-color 0.4s ease;
+  /* ── FIX: No tap highlight on custom buttons ── */
+  -webkit-tap-highlight-color: transparent;
+  /* ── FIX: Prevent text selection on button tap ── */
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .button:hover {
