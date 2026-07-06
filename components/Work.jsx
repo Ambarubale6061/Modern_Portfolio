@@ -261,6 +261,27 @@ const projects = [
     category: "web",
   },
   {
+    title: "MediCore HMS",
+    tagline: "Hospital Management System",
+    description:
+      "Built a full-stack hospital management platform with role-based access for Admin, Doctor, Receptionist, and Patient. Features real-time appointment scheduling, OPD queue management, billing, prescriptions, and a live analytics dashboard powered by Socket.IO.",
+    tech: [
+      "React 19",
+      "TypeScript",
+      "Node.js",
+      "Express",
+      "Supabase",
+      "Socket.IO",
+      "Drizzle ORM",
+    ],
+    image: "/medicore.png",
+    link: "https://hospital-management-system-seven-kappa.vercel.app/",
+    github: "https://github.com/Ambarubale6061/medicore-hms",
+    accentFrom: "#0d9488",
+    accentTo: "#0891b2",
+    category: "fullstack",
+  },
+  {
     title: "FutureCart",
     tagline: "AI-powered commerce",
     description:
