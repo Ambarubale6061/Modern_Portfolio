@@ -276,7 +276,7 @@ const projects = [
     ],
     image: "/medicore.png",
     link: "https://hospital-management-system-seven-kappa.vercel.app/",
-    github: "https://github.com/Ambarubale6061/medicore-hms",
+    github: "https://github.com/Ambarubale6061/Hospital-Management-System",
     accentFrom: "#0d9488",
     accentTo: "#0891b2",
     category: "fullstack",
