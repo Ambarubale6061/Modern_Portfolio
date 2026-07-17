@@ -7,17 +7,43 @@ const aboutStyles = `
   row-gap: 2.5rem;
 }
 
-.about__img {
-  width: 280px; /* Increased size */
-  border-radius: 1.5rem;
+.about__img-wrapper {
   justify-self: center;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Premium shadow */
-  border: 4px solid var(--container-color); /* Premium border effect */
-  transition: transform 0.3s ease;
+  width: fit-content;
+  padding: 1.25rem;
+  border-radius: 2rem;
+  background: linear-gradient(
+    145deg,
+    var(--container-color),
+    color-mix(in srgb, var(--container-color) 85%, var(--first-color) 15%)
+  );
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.18);
+  transition: background 0.4s ease, box-shadow 0.4s ease;
+  display: inline-block; /* Fixed: Added to allow proper transform mapping */
 }
 
-.about__img:hover {
-  transform: scale(1.02); /* Subtle premium interaction */
+body.light-theme .about__img-wrapper {
+  background: linear-gradient(
+    145deg,
+    #ffffff,
+    color-mix(in srgb, var(--container-color) 90%, var(--first-color) 10%)
+  );
+  box-shadow: 0 12px 30px hsla(var(--second-hue), 48%, 8%, 0.12);
+}
+
+.about__img {
+  display: block;
+  width: 280px; /* Increased size */
+  border-radius: 1.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Premium shadow */
+  border: 4px solid var(--container-color); /* Premium border effect */
+  transform: rotate(-4deg) scale(0.96);
+  transition: transform 0.25s ease; /* वेगवान केला (0.45s वरून 0.25s केला) */
+  backface-visibility: hidden; /* Fixed: Prevents jittering during animation */
+}
+
+.about__img-wrapper:hover .about__img {
+  transform: rotate(0deg) scale(1) !important; /* Fixed: Added !important to enforce state change */
 }
 
 .about__data {
@@ -32,10 +58,23 @@ const aboutStyles = `
 }
 
 .about__box {
-  background-color: var(--container-color);
+  background-color: color-mix(in srgb, var(--container-color) 90%, black 10%);
   border-radius: 0.75rem;
   padding: 0.75rem 0.5rem;
-  transition: background-color 0.4s ease;
+  transition: background-color 0.3s ease; /* फक्त बॅकग्राउंड ट्रान्झिशन */
+}
+
+body.light-theme .about__box {
+  background-color: color-mix(in srgb, var(--container-color) 95%, black 5%);
+}
+
+/* कर्सर नेल्यावर फक्त बॉक्स ट्रान्सपरंट होईल, मजकूर गडदच राहील */
+.about__box:hover {
+  background-color: rgba(255, 255, 255, 0.05); /* डार्क थीमसाठी ट्रान्सपरंट बॅकग्राउंड */
+}
+
+body.light-theme .about__box:hover {
+  background-color: rgba(0, 0, 0, 0.03); /* लाईट थीमसाठी ट्रान्सपरंट बॅकग्राउंड */
 }
 
 .about__icon {
@@ -139,8 +178,10 @@ export default function About() {
         <h2 className="section__title">About Me</h2>
 
         <div className="about__container container grid">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/am1.png" alt="About" className="about__img" />
+          <div className="about__img-wrapper">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/am1.png" alt="About" className="about__img" />
+          </div>
 
           <div className="about__data">
             <div className="about__info">
