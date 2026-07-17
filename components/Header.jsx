@@ -1,6 +1,12 @@
 "use client";
 
 import { useEffect } from "react";
+import {
+  navigateToSection,
+  scrollToPathOnLoad,
+  setupPopStateSync,
+  syncUrlForSection,
+} from "@/lib/scrollNav";
 
 const headerStyles = `
 /*=============== HEADER & NAV ===============*/
@@ -159,28 +165,41 @@ export default function Header() {
     };
     window.addEventListener("scroll", scrollHeader);
 
-    /*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
+    /*=============== SCROLL SECTIONS ACTIVE LINK + URL SYNC ===============*/
     const sections = document.querySelectorAll("section[id]");
 
     const scrollActive = () => {
       const scrollY = window.pageYOffset;
+      let currentSectionId = null;
 
       sections.forEach((current) => {
         const sectionHeight = current.offsetHeight;
         const sectionTop = current.offsetTop - 58;
         const sectionId = current.getAttribute("id");
+        const isInView =
+          scrollY > sectionTop && scrollY <= sectionTop + sectionHeight;
+
+        if (isInView) {
+          currentSectionId = sectionId;
+        }
+
         const navLink = document.querySelector(
           `.nav__menu a[href*=${sectionId}]`,
         );
 
         if (!navLink) return;
 
-        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+        if (isInView) {
           navLink.classList.add("active-link");
         } else {
           navLink.classList.remove("active-link");
         }
       });
+
+      // Keep the URL in sync with whichever section is currently in view.
+      if (currentSectionId) {
+        syncUrlForSection(currentSectionId);
+      }
     };
     window.addEventListener("scroll", scrollActive);
 
@@ -215,10 +234,17 @@ export default function Header() {
 
     themeButton.addEventListener("click", handleThemeToggle);
 
+    /*=============== HASH-FREE URL SYNC ===============*/
+    // On first mount, if the URL already points at a section (e.g. /about
+    // from a refresh or shared link), jump straight to it.
+    scrollToPathOnLoad();
+    const cleanupPopState = setupPopStateSync();
+
     return () => {
       window.removeEventListener("scroll", scrollHeader);
       window.removeEventListener("scroll", scrollActive);
       themeButton.removeEventListener("click", handleThemeToggle);
+      cleanupPopState();
     };
   }, []);
 
@@ -227,39 +253,67 @@ export default function Header() {
       <style dangerouslySetInnerHTML={{ __html: headerStyles }} />
       <header className="header" id="header">
         <nav className="nav container">
-          <a href="#" className="nav__logo">
+          <a
+            href="/"
+            className="nav__logo"
+            onClick={(e) => navigateToSection(e, "home")}
+          >
             <span className="nav__logo-am">Am</span>bar
           </a>
 
           <div className="nav__menu">
             <ul className="nav__list">
               <li className="nav__item">
-                <a href="#home" className="nav__link">
+                <a
+                  href="/home"
+                  className="nav__link"
+                  onClick={(e) => navigateToSection(e, "home")}
+                >
                   <i className="bx bx-home"></i>
                 </a>
               </li>
               <li className="nav__item">
-                <a href="#about" className="nav__link">
+                <a
+                  href="/about"
+                  className="nav__link"
+                  onClick={(e) => navigateToSection(e, "about")}
+                >
                   <i className="bx bx-user"></i>
                 </a>
               </li>
               <li className="nav__item">
-                <a href="#skills" className="nav__link">
+                <a
+                  href="/skills"
+                  className="nav__link"
+                  onClick={(e) => navigateToSection(e, "skills")}
+                >
                   <i className="bx bx-book"></i>
                 </a>
               </li>
               <li className="nav__item">
-                <a href="#work" className="nav__link">
+                <a
+                  href="/work"
+                  className="nav__link"
+                  onClick={(e) => navigateToSection(e, "work")}
+                >
                   <i className="bx bx-briefcase-alt-2"></i>
                 </a>
               </li>
               <li className="nav__item">
-                <a href="#experience" className="nav__link">
+                <a
+                  href="/experience"
+                  className="nav__link"
+                  onClick={(e) => navigateToSection(e, "experience")}
+                >
                   <i className="bx bx-time-five"></i>
                 </a>
               </li>
               <li className="nav__item">
-                <a href="#contact" className="nav__link">
+                <a
+                  href="/contact"
+                  className="nav__link"
+                  onClick={(e) => navigateToSection(e, "contact")}
+                >
                   <i className="bx bx-message-square-dots"></i>
                 </a>
               </li>
