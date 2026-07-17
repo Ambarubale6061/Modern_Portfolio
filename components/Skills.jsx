@@ -44,7 +44,7 @@ const skillsStyles = `
 }
 
 .skills__content {
-  background-color: var(--container-color);
+  background-color: color-mix(in srgb, var(--container-color) 90%, black 10%);
   padding: 1.5rem 1rem;
   border-radius: 1.25rem;
   position: relative;
@@ -55,6 +55,10 @@ const skillsStyles = `
   transition:
     background-color 0.4s ease,
     box-shadow 0.4s ease;
+}
+
+body.light-theme .skills__content {
+  background-color: color-mix(in srgb, var(--container-color) 95%, black 5%);
 }
 
 .skills__title {
@@ -266,7 +270,7 @@ const SkillCardAnimation = memo(function SkillCardAnimation({ skills, title }) {
     if (isHovered) return;
     const interval = setInterval(() => {
       setActiveIndex((prev) => (prev - 1 + skills.length) % skills.length);
-    }, 2800);
+    }, 1400);
     return () => clearInterval(interval);
   }, [skills.length, isHovered]);
 
