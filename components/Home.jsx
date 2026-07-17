@@ -2,6 +2,7 @@
 
 import { TypeAnimation } from "react-type-animation";
 import { useState } from "react";
+import { navigateToSection } from "@/lib/scrollNav";
 
 const homeStyles = `
 /*=============== HOME ===============*/
@@ -284,8 +285,9 @@ export default function Home() {
               </a>
 
               <a
-                href="#about"
+                href="/about"
                 className="button"
+                onClick={(e) => navigateToSection(e, "about")}
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
                 style={{
@@ -336,7 +338,11 @@ export default function Home() {
             </a>
           </div>
 
-          <a href="#about" className="home__scroll">
+          <a
+            href="/about"
+            className="home__scroll"
+            onClick={(e) => navigateToSection(e, "about")}
+          >
             <i className="bx bx-mouse home__scroll-icon"></i>
             <span className="home__scroll-name">Scroll Down</span>
           </a>
